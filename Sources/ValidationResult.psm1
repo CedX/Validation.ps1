@@ -12,7 +12,25 @@ class ValidationResult {
 		The list of errors that occurred.
 	#>
 	[ValidateNotNull()]
-	[ValidationFailure[]] $Errors = @()
+	[ValidationFailure[]] $Errors
+
+	<#
+	.SYNOPSIS
+		Creates a new validation result.
+	#>
+	ValidationResult() {
+		$this.Errors = @()
+	}
+
+	<#
+	.SYNOPSIS
+		Creates a new validation result.
+	.PARAMETER Errors
+		The list of errors that occurred.
+	#>
+	ValidationResult([ValidationFailure[]] $Errors) {
+		$this.Errors = $Errors
+	}
 
 	<#
 	.SYNOPSIS
