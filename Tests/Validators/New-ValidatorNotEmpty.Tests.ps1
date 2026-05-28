@@ -5,7 +5,7 @@ using module ../../Validation.psd1
 	Tests the features of the `New-ValidatorNotEmpty` cmdlet.
 #>
 Describe "New-ValidatorNotEmpty" {
-	It "should return `$true if the specified value is not empty" -ForEach $true, 1, "foo", @("foo"), @{ Foo = "bar" } {
+	It "should return `$true if the specified value is not empty" -ForEach $true, 1, "foo", @("foo"), @{ Foo = "bar" }, ([pscustomobject]@{}) {
 		& (New-ValidatorNotEmpty) $_ | Should -BeTrue
 	}
 
