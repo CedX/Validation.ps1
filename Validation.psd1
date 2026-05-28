@@ -14,7 +14,8 @@
 	VariablesToExport = @()
 
 	FunctionsToExport = @(
-		# TODO
+		"New-ValidatorNotEmpty"
+		"New-ValidatorNotNull"
 	)
 
 	PrivateData = @{
