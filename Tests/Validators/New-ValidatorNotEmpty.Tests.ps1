@@ -1,0 +1,15 @@
+using module ../../Validation.psd1
+
+<#
+.SYNOPSIS
+	Tests the features of the `New-ValidatorNotEmpty` cmdlet.
+#>
+Describe "New-ValidatorNotEmpty" {
+	It "should return `$true if the specified value is not empty" -ForEach $true, 1, "foo", @("foo"), @{ Foo = "bar" } {
+		& (New-ValidatorNotEmpty) $_ | Should -BeTrue
+	}
+
+	It "should return `$false if the specified value is empty" -ForEach $null, $false, "  ", @(), @{} {
+		& (New-ValidatorNotEmpty) $_ | Should -BeFalse
+	}
+}
