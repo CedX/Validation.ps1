@@ -27,9 +27,9 @@ class ValidationFailure {
 
 	<#
 	.SYNOPSIS
-		Returns a string representation of this object.
+		Returns a string representation of the failure.
 	.OUTPUTS
-		The string representation of this object.
+		The string representation of the failure.
 	#>
 	[string] ToString() {
 		return $this.ErrorMessage
