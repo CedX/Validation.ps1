@@ -23,8 +23,8 @@ function New-ValidatorGreaterThan {
 	)
 
 	$ErrorMessage ??= "'{PropertyName}' must be greater than '{ComparisonValue}'."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		$property -gt $Value
+	[Validator]::new($ErrorMessage, { param ([object] $object)
+		$object -gt $Value
 	})
 }
 
@@ -51,7 +51,7 @@ function New-ValidatorGreaterThanOrEqual {
 	)
 
 	$ErrorMessage ??= "'{PropertyName}' must be greater than or equal to '{ComparisonValue}'."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		$property -ge $Value
+	[Validator]::new($ErrorMessage, { param ([object] $object)
+		$object -ge $Value
 	})
 }

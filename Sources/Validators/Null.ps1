@@ -27,9 +27,9 @@ function New-ValidatorNull {
 		[string] $ErrorMessage
 	)
 
-	$ErrorMessage ??= "'{PropertyName}' must be empty."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		$null -eq $property
+	$ErrorMessage ??= "'{PropertyName}' must be null."
+	[Validator]::new($ErrorMessage, { param ([object] $object)
+		$null -eq $object
 	})
 }
 
@@ -48,8 +48,8 @@ function New-ValidatorNotNull {
 		[string] $ErrorMessage
 	)
 
-	$ErrorMessage ??= "'{PropertyName}' must not be empty."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		$null -ne $property
+	$ErrorMessage ??= "'{PropertyName}' must not be null."
+	[Validator]::new($ErrorMessage, { param ([object] $object)
+		$null -ne $object
 	})
 }
