@@ -1,39 +1,55 @@
-<#
-.SYNOPSIS
-	The unique instance of the `Null` validator.
-#>
-[scriptblock] $Script:NullValidator = { param ([object] $property) $null -eq $property }
+using module ../Validator.psm1
 
 <#
 .SYNOPSIS
-	The unique instance of the `NotNull` validator.
+	The unique instance of the `Null` validation script block.
 #>
-[scriptblock] $Script:NotNullValidator = { param ([object] $property) $null -ne $property }
+[scriptblock] $Script:NullValidator =
+
+<#
+.SYNOPSIS
+	The unique instance of the `NotNull` validation script block.
+#>
+[scriptblock] $Script:NotNullValidator =
 
 <#
 .SYNOPSIS
 	Creates a new `Null` validator.
 .OUTPUTS
-	The script block to use for validation.
+	The newly created validator.
 #>
 function New-ValidatorNull {
 	[CmdletBinding()]
-	[OutputType([scriptblock])]
-	param ()
+	[OutputType([Validator])]
+	param (
+		# The error message describing the validation failure.
+		[Parameter(Position = 0)]
+		[string] $ErrorMessage
+	)
 
-	$Script:NullValidator
+	$ErrorMessage ??= "'{PropertyName}' must be empty."
+	[Validator]::new($ErrorMessage, { param ([object] $property)
+		$null -eq $property
+	})
 }
 
 <#
 .SYNOPSIS
 	Creates a new `NotNull` validator.
 .OUTPUTS
-	The script block to use for validation.
+	The newly created validator.
 #>
 function New-ValidatorNotNull {
 	[CmdletBinding()]
-	[OutputType([scriptblock])]
-	param ()
+	[OutputType([Validator])]
+	param (
+		# The error message describing the validation failure.
+		[Parameter(Position = 0)]
+		[string] $ErrorMessage
+	)
 
-	$Script:NotNullValidator
+	$ErrorMessage ??= "'{PropertyName}' must not be empty."
+	[Validator]::new($ErrorMessage, { param ([object] $property)
+		$null -ne $property
+	})
 }
