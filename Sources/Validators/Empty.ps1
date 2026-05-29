@@ -18,11 +18,11 @@ function New-ValidatorEmpty {
 	)
 
 	$ErrorMessage ??= "'{PropertyName}' must be empty."
-	[Validator]::new($ErrorMessage, { param ([object] $object)
-		if ($object -is [string]) { return [string]::IsNullOrWhiteSpace($object) }
-		if ($object -is [ICollection]) { return $object.Count -eq 0 }
-		if ($object -is [IEnumerable]) { return -not $object.GetEnumerator().MoveNext() }
-		-not [bool] $object
+	[Validator]::new($ErrorMessage, { param ([object] $property)
+		if ($property -is [string]) { return [string]::IsNullOrWhiteSpace($property) }
+		if ($property -is [ICollection]) { return $property.Count -eq 0 }
+		if ($property -is [IEnumerable]) { return -not $property.GetEnumerator().MoveNext() }
+		-not [bool] $property
 	})
 }
 
@@ -42,10 +42,10 @@ function New-ValidatorNotEmpty {
 	)
 
 	$ErrorMessage ??= "'{PropertyName}' must not be empty."
-	[Validator]::new($ErrorMessage, { param ([object] $object)
-		if ($object -is [string]) { return -not [string]::IsNullOrWhiteSpace($object) }
-		if ($object -is [ICollection]) { return $object.Count -gt 0 }
-		if ($object -is [IEnumerable]) { return $object.GetEnumerator().MoveNext() }
-		[bool] $object
+	[Validator]::new($ErrorMessage, { param ([object] $property)
+		if ($property -is [string]) { return -not [string]::IsNullOrWhiteSpace($property) }
+		if ($property -is [ICollection]) { return $property.Count -gt 0 }
+		if ($property -is [IEnumerable]) { return $property.GetEnumerator().MoveNext() }
+		[bool] $property
 	})
 }

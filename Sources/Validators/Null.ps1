@@ -2,18 +2,6 @@ using module ../Validator.psm1
 
 <#
 .SYNOPSIS
-	The unique instance of the `Null` validation script block.
-#>
-[scriptblock] $Script:NullValidator =
-
-<#
-.SYNOPSIS
-	The unique instance of the `NotNull` validation script block.
-#>
-[scriptblock] $Script:NotNullValidator =
-
-<#
-.SYNOPSIS
 	Creates a new `Null` validator.
 .OUTPUTS
 	The newly created validator.
@@ -28,8 +16,8 @@ function New-ValidatorNull {
 	)
 
 	$ErrorMessage ??= "'{PropertyName}' must be null."
-	[Validator]::new($ErrorMessage, { param ([object] $object)
-		$null -eq $object
+	[Validator]::new($ErrorMessage, { param ([object] $property)
+		$null -eq $property
 	})
 }
 
@@ -49,7 +37,7 @@ function New-ValidatorNotNull {
 	)
 
 	$ErrorMessage ??= "'{PropertyName}' must not be null."
-	[Validator]::new($ErrorMessage, { param ([object] $object)
-		$null -ne $object
+	[Validator]::new($ErrorMessage, { param ([object] $property)
+		$null -ne $property
 	})
 }

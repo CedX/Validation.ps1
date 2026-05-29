@@ -61,6 +61,6 @@ class ValidationResult {
 		The string representation of the error messages.
 	#>
 	[string] ToString([string] $Separator) {
-		return $this.Errors.ForEach{ $_.ErrorMessage } -join $Separator
+		return $this.Errors -join $Separator
 	}
 }
