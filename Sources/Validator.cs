@@ -24,7 +24,11 @@ public class Validator {
 	/// </summary>
 	/// <param name="value">The value to be validated.</param>
 	/// <returns><see langword="true"/> if the specified value is valid otherwise <see langword="false"/>.</returns>
-	public bool IsValid(object? value) => Convert.ToBoolean(Test.Invoke(value).Last().BaseObject, CultureInfo.InvariantCulture);
+	public bool IsValid(object? value) {
+		var variables = new List<PSVariable> { new("this", this) };
+		var output = Test.InvokeWithContext(functionsToDefine: null, variablesToDefine: variables, value);
+		return Convert.ToBoolean(output.Last().BaseObject, CultureInfo.InvariantCulture);
+	}
 
 	/// <summary>
 	/// Creates a new validator from the specified hash table.

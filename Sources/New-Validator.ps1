@@ -1,4 +1,5 @@
 ﻿using namespace Belin.Validation
+using namespace System.Diagnostics.CodeAnalysis
 
 <#
 .SYNOPSIS
@@ -9,6 +10,7 @@
 function New-Validator {
 	[CmdletBinding()]
 	[OutputType([Belin.Validation.Validator])]
+	[SuppressMessage("PSUseShouldProcessForStateChangingFunctions", "")]
 	param (
 		# The error message describing the validation failure.
 		[Parameter(Mandatory, Position = 0)]
@@ -19,7 +21,7 @@ function New-Validator {
 		[scriptblock] $Test
 	)
 
-	[Validator]@{
+	return [Validator]@{
 		Reason = $Reason
 		Test = $Test
 	}
