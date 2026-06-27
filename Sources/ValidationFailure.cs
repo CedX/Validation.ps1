@@ -8,7 +8,7 @@ public class ValidationFailure {
 	/// <summary>
 	/// The property value that caused the failure.
 	/// </summary>
-	public required object? AttemptedValue { get; set; }
+	public object? AttemptedValue { get; set; }
 
 	/// <summary>
 	/// The error message describing the validation failure.
