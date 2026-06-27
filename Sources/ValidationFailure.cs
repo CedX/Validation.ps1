@@ -6,23 +6,23 @@ namespace Belin.Validation;
 public class ValidationFailure {
 
 	/// <summary>
-	/// The property value that caused the failure.
+	/// The name of the validated property.
 	/// </summary>
-	public object? AttemptedValue { get; set; }
+	public required string Property { get; set; }
 
 	/// <summary>
 	/// The error message describing the validation failure.
 	/// </summary>
-	public required string ErrorMessage { get; set; }
+	public required string Reason { get; set; }
 
 	/// <summary>
-	/// The name of the validated property.
+	/// The property value that caused the failure.
 	/// </summary>
-	public required string PropertyName { get; set; }
+	public object? Value { get; set; }
 
 	/// <summary>
 	/// Returns a string representation of this object.
 	/// </summary>
 	/// <returns>The string representation of this object.</returns>
-	public override string ToString() => ErrorMessage;
+	public override string ToString() => Reason;
 }
