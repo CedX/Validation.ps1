@@ -1,4 +1,5 @@
 @{
+	DefaultCommandPrefix = "Validation"
 	ModuleVersion = "0.1.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Main.psm1"
@@ -7,19 +8,21 @@
 	CompanyName = "Cedric-Belin.fr"
 	Copyright = "© Cédric Belin"
 	Description = "TODO"
-	GUID = "aa7011a2-c6cd-4825-9dff-845a1e6f7e58"
+	GUID = "9c428994-d95d-48c8-af60-8b5db25e22b4"
 
 	AliasesToExport = @()
 	CmdletsToExport = @()
+	RequiredAssemblies = , "Binaries/Belin.Validation.dll"
 	VariablesToExport = @()
 
 	FunctionsToExport = @(
-		"New-ValidatorEmpty"
-		"New-ValidatorGreaterThan"
-		"New-ValidatorGreaterThanOrEqual"
-		"New-ValidatorNotEmpty"
-		"New-ValidatorNotNull"
-		"New-ValidatorNull"
+		"New-Validator"
+		# "New-ValidatorEmpty"
+		# "New-ValidatorGreaterThan"
+		# "New-ValidatorGreaterThanOrEqual"
+		# "New-ValidatorNotEmpty"
+		# "New-ValidatorNotNull"
+		# "New-ValidatorNull"
 	)
 
 	PrivateData = @{
