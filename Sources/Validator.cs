@@ -17,7 +17,7 @@ public class Validator {
 	/// <summary>
 	/// The script block used to perform the validation.
 	/// </summary>
-	public required ScriptBlock Test { get; set; }
+	public required ScriptBlock Test { get; init; }
 
 	/// <summary>
 	/// Returns a value indicating whether the specified value is valid according to this validator.
@@ -25,8 +25,8 @@ public class Validator {
 	/// <param name="value">The value to be validated.</param>
 	/// <returns><see langword="true"/> if the specified value is valid otherwise <see langword="false"/>.</returns>
 	public bool IsValid(object? value) {
-		var variables = new List<PSVariable> { new("this", this) };
-		var output = Test.InvokeWithContext(functionsToDefine: null, variablesToDefine: variables, value);
+		var variables = new List<PSVariable> { new("this", this), new("_", value) };
+		var output = Test.InvokeWithContext(functionsToDefine: null, variablesToDefine: variables);
 		return Convert.ToBoolean(output.Last().BaseObject, CultureInfo.InvariantCulture);
 	}
 
@@ -35,11 +35,9 @@ public class Validator {
 	/// </summary>
 	/// <param name="hashtable">The hash table providing the validator properties.</param>
 	/// <returns>The validator corresponding to the specified hash table.</returns>
-	/// <exception cref="ArgumentException">TODO</exception>
-	public static implicit operator Validator(Hashtable hashtable) {
-		return new Validator {
-			Reason = hashtable["Reason"] is string reason ? reason : throw new ArgumentException("TODO", nameof(hashtable)),
-			Test = hashtable["Test"] is ScriptBlock test ? test : throw new ArgumentException("TODO", nameof(hashtable))
-		};
-	}
+	/// <exception cref="ArgumentException">The error message or the script block is missing or invalid.</exception>
+	public static implicit operator Validator(Hashtable hashtable) => new() {
+		Reason = hashtable["Reason"] is string reason ? reason : throw new ArgumentException("The error message is missing or invalid.", nameof(hashtable)),
+		Test = hashtable["Test"] is ScriptBlock test ? test : throw new ArgumentException("The script block is missing or invalid.", nameof(hashtable))
+	};
 }

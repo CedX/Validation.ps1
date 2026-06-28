@@ -1,6 +1,6 @@
+using namespace Belin.Validation
 using namespace System.Collections
 using namespace System.Collections.Generic
-using module ../Validator.psm1
 
 <#
 .SYNOPSIS
@@ -10,20 +10,19 @@ using module ../Validator.psm1
 #>
 function New-ValidatorEmpty {
 	[CmdletBinding()]
-	[OutputType([Validator])]
+	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Position = 0)]
-		[string] $ErrorMessage
+		[Parameter(Mandatory, Position = 0)]
+		[string] $Reason
 	)
 
-	$ErrorMessage ??= "'{PropertyName}' must be empty."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		if ($property -is [string]) { return [string]::IsNullOrWhiteSpace($property) }
-		if ($property -is [ICollection]) { return $property.Count -eq 0 }
-		if ($property -is [IEnumerable]) { return -not $property.GetEnumerator().MoveNext() }
-		-not [bool] $property
-	})
+	New-Validator $Reason {
+		if ($_ -is [string]) { return [string]::IsNullOrWhiteSpace($_) }
+		if ($_ -is [ICollection]) { return $_.Count -eq 0 }
+		if ($_ -is [IEnumerable]) { return -not $_.GetEnumerator().MoveNext() }
+		-not [bool] $_
+	}
 }
 
 <#
@@ -34,18 +33,17 @@ function New-ValidatorEmpty {
 #>
 function New-ValidatorNotEmpty {
 	[CmdletBinding()]
-	[OutputType([Validator])]
+	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Position = 0)]
-		[string] $ErrorMessage
+		[Parameter(Mandatory, Position = 0)]
+		[string] $Reason
 	)
 
-	$ErrorMessage ??= "'{PropertyName}' must not be empty."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		if ($property -is [string]) { return -not [string]::IsNullOrWhiteSpace($property) }
-		if ($property -is [ICollection]) { return $property.Count -gt 0 }
-		if ($property -is [IEnumerable]) { return $property.GetEnumerator().MoveNext() }
-		[bool] $property
-	})
+	New-Validator $Reason {
+		if ($_ -is [string]) { return -not [string]::IsNullOrWhiteSpace($_) }
+		if ($_ -is [ICollection]) { return $_.Count -gt 0 }
+		if ($_ -is [IEnumerable]) { return $_.GetEnumerator().MoveNext() }
+		[bool] $_
+	}
 }
