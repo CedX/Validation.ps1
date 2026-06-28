@@ -1,4 +1,4 @@
-using module ../Validator.psm1
+using namespace Belin.Validation
 
 <#
 .SYNOPSIS
@@ -8,17 +8,14 @@ using module ../Validator.psm1
 #>
 function New-ValidatorNull {
 	[CmdletBinding()]
-	[OutputType([Validator])]
+	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Position = 0)]
-		[string] $ErrorMessage
+		[Parameter(Mandatory, Position = 0)]
+		[string] $Reason
 	)
 
-	$ErrorMessage ??= "'{PropertyName}' must be null."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		$null -eq $property
-	})
+	New-Validator $Reason { $null -eq $_ }
 }
 
 <#
@@ -29,15 +26,12 @@ function New-ValidatorNull {
 #>
 function New-ValidatorNotNull {
 	[CmdletBinding()]
-	[OutputType([Validator])]
+	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Position = 0)]
-		[string] $ErrorMessage
+		[Parameter(Mandatory, Position = 0)]
+		[string] $Reason
 	)
 
-	$ErrorMessage ??= "'{PropertyName}' must not be null."
-	[Validator]::new($ErrorMessage, { param ([object] $property)
-		$null -ne $property
-	})
+	New-Validator $Reason { $null -ne $_ }
 }

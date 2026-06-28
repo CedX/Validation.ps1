@@ -1,5 +1,4 @@
 @{
-	DefaultCommandPrefix = "Validation"
 	ModuleVersion = "0.1.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Main.psm1"
@@ -17,12 +16,12 @@
 
 	FunctionsToExport = @(
 		"New-Validator"
-		# "New-ValidatorEmpty"
+		"New-ValidatorEmpty"
 		# "New-ValidatorGreaterThan"
 		# "New-ValidatorGreaterThanOrEqual"
-		# "New-ValidatorNotEmpty"
-		# "New-ValidatorNotNull"
-		# "New-ValidatorNull"
+		"New-ValidatorNotEmpty"
+		"New-ValidatorNotNull"
+		"New-ValidatorNull"
 	)
 
 	PrivateData = @{
