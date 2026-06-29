@@ -15,7 +15,7 @@ Describe "New-ValidatorGreaterThan" {
 		(New-ValidatorGreaterThan $value "An error occurred.").IsValid($property) | Should -BeTrue
 	}
 
-	It "should return `$false if the property is lesser than or equal to the specified value" -ForEach @(
+	It "should return `$false if the property is less than or equal to the specified value" -ForEach @(
 		@{ Property = $null; Value = $null }
 		@{ Property = $false; Value = $true }
 		@{ Property = 123; Value = 456 }
@@ -44,7 +44,7 @@ Describe "New-ValidatorGreaterThanOrEqual" {
 		(New-ValidatorGreaterThanOrEqual $value "An error occurred.").IsValid($property) | Should -BeTrue
 	}
 
-	It "should return `$false if the property is lesser than the specified value" -ForEach @(
+	It "should return `$false if the property is less than the specified value" -ForEach @(
 		@{ Property = $false; Value = $true }
 		@{ Property = 123; Value = 456 }
 		@{ Property = 0; Value = 1.5 }

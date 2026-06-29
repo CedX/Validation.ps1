@@ -20,6 +20,8 @@
 		"New-ValidatorEmpty"
 		"New-ValidatorGreaterThan"
 		"New-ValidatorGreaterThanOrEqual"
+		"New-ValidatorLessThan"
+		"New-ValidatorLessThanOrEqual"
 		"New-ValidatorNotEmpty"
 		"New-ValidatorNotNull"
 		"New-ValidatorNull"
