@@ -1,4 +1,5 @@
 @{
+	# TODO ? DefaultCommandPrefix = "Validigo"
 	ModuleVersion = "0.1.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Main.psm1"

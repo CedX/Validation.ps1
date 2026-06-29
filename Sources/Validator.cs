@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Management.Automation;
 
 /// <summary>
-/// Performs data validation.
+/// A generic validator.
 /// </summary>
 public class Validator {
 
