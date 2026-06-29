@@ -2,7 +2,7 @@
 
 <#
 .SYNOPSIS
-	Creates a new `Equal` validator.
+	Creates a new validator that ensures the validated value is equal to a particular value.
 .OUTPUTS
 	The newly created validator.
 #>
@@ -33,7 +33,7 @@ function New-ValidatorEqual {
 
 <#
 .SYNOPSIS
-	Creates a new `NotEqual` validator.
+	Creates a new validator that ensures the validated value is not equal to a particular value.
 .OUTPUTS
 	The newly created validator.
 #>

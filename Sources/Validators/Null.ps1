@@ -1,8 +1,6 @@
-using namespace Belin.Validation
-
 <#
 .SYNOPSIS
-	Creates a new `Null` validator.
+	Creates a new validator that ensures the validated value is `$null`.
 .OUTPUTS
 	The newly created validator.
 #>
@@ -20,7 +18,7 @@ function New-ValidatorNull {
 
 <#
 .SYNOPSIS
-	Creates a new `NotNull` validator.
+	Creates a new validator that ensures the validated value is not `$null`.
 .OUTPUTS
 	The newly created validator.
 #>

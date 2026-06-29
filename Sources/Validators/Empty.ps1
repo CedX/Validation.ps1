@@ -1,10 +1,9 @@
-using namespace Belin.Validation
 using namespace System.Collections
 using namespace System.Collections.Generic
 
 <#
 .SYNOPSIS
-	Creates a new `Empty` validator.
+	Creates a new validator that ensures the validated value is empty.
 .OUTPUTS
 	The newly created validator.
 #>
@@ -27,7 +26,7 @@ function New-ValidatorEmpty {
 
 <#
 .SYNOPSIS
-	Creates a new `NotEmpty` validator.
+	Creates a new validator that ensures the validated value is not empty.
 .OUTPUTS
 	The newly created validator.
 #>
