@@ -6,4 +6,8 @@ namespace Belin.Validation;
 /// <typeparam name="T">The type of the comparison value.</typeparam>
 public class ComparisonValidator<T>: Validator {
 
+	/// <summary>
+	/// The comparison value.
+	/// </summary>
+	public required T ValueToCompare { get; init; }
 }
