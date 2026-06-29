@@ -1,5 +1,4 @@
 @{
-	# TODO ? DefaultCommandPrefix = "Validigo"
 	ModuleVersion = "0.1.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Main.psm1"
@@ -18,11 +17,13 @@
 	FunctionsToExport = @(
 		"New-Validator"
 		"New-ValidatorEmpty"
+		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"
 		"New-ValidatorGreaterThanOrEqual"
 		"New-ValidatorLessThan"
 		"New-ValidatorLessThanOrEqual"
 		"New-ValidatorNotEmpty"
+		"New-ValidatorNotEqual"
 		"New-ValidatorNotNull"
 		"New-ValidatorNull"
 	)
