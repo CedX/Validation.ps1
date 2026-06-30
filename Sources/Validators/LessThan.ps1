@@ -2,7 +2,7 @@
 
 <#
 .SYNOPSIS
-	Creates a new `LessThan` validator.
+	Creates a new validator that ensures the validated value is less than a specific value.
 .OUTPUTS
 	The newly created validator.
 #>
@@ -33,7 +33,7 @@ function New-ValidatorLessThan {
 
 <#
 .SYNOPSIS
-	Creates a new `LessThanOrEqual` validator.
+	Creates a new validator that ensures the validated value is less than or equal to a specific value.
 .OUTPUTS
 	The newly created validator.
 #>

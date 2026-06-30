@@ -2,7 +2,7 @@ using namespace Belin.Validation
 
 <#
 .SYNOPSIS
-	Creates a new `GreaterThan` validator.
+	Creates a new validator that ensures the validated value is greater than a specific value.
 .OUTPUTS
 	The newly created validator.
 #>
@@ -33,7 +33,7 @@ function New-ValidatorGreaterThan {
 
 <#
 .SYNOPSIS
-	Creates a new `GreaterThanOrEqual` validator.
+	Creates a new validator that ensures the validated value is greater than or equal to a specific value.
 .OUTPUTS
 	The newly created validator.
 #>
