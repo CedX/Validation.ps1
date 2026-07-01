@@ -9,7 +9,7 @@ using namespace System.Collections.Generic
 #>
 function New-ValidatorEmpty {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.IValidator])]
 	param (
 		# The error message describing the validation failure.
 		[Parameter(Mandatory, Position = 0)]
@@ -32,7 +32,7 @@ function New-ValidatorEmpty {
 #>
 function New-ValidatorNotEmpty {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.IValidator])]
 	param (
 		# The error message describing the validation failure.
 		[Parameter(Mandatory, Position = 0)]

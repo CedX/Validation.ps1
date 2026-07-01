@@ -8,7 +8,7 @@
 #>
 function New-ValidatorLessThan {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.IValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 0)]
@@ -39,7 +39,7 @@ function New-ValidatorLessThan {
 #>
 function New-ValidatorLessThanOrEqual {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.IValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 0)]
