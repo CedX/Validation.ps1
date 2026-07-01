@@ -9,5 +9,5 @@ public class ComparisonValidator<T>: Validator {
 	/// <summary>
 	/// The comparison value.
 	/// </summary>
-	public required T ValueToCompare { get; init; }
+	public required T Value { get; init; }
 }
