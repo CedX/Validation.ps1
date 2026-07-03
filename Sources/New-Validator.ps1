@@ -8,7 +8,7 @@
 #>
 function New-Validator {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.IValidator])]
+	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
 		[Parameter(Mandatory, Position = 0)]

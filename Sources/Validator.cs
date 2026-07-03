@@ -5,32 +5,9 @@ using System.Globalization;
 using System.Management.Automation;
 
 /// <summary>
-/// Performs data validation.
-/// </summary>
-public interface IValidator {
-
-	/// <summary>
-	/// The error message describing the validation failure.
-	/// </summary>
-	string Reason { get; }
-
-	/// <summary>
-	/// The script block used to perform the validation.
-	/// </summary>
-	ScriptBlock Test { get; }
-
-	/// <summary>
-	/// Returns a value indicating whether the specified value is valid according to this validator.
-	/// </summary>
-	/// <param name="value">The value to be validated.</param>
-	/// <returns><see langword="true"/> if the specified value is valid otherwise <see langword="false"/>.</returns>
-	bool IsValid(object? value);
-}
-
-/// <summary>
 /// A generic validator.
 /// </summary>
-public class Validator: IValidator {
+public class Validator {
 
 	/// <summary>
 	/// The error message describing the validation failure.
