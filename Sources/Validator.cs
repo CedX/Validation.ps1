@@ -41,3 +41,32 @@ public class Validator {
 		Test = hashtable["Test"] is ScriptBlock test ? test : throw new ArgumentException("The script block is missing or invalid.", nameof(hashtable))
 	};
 }
+
+/// <summary>
+/// A validator that compares a value to another reference value.
+/// </summary>
+/// <typeparam name="T">The type of the comparison value.</typeparam>
+public class ComparisonValidator<T>: Validator {
+
+	/// <summary>
+	/// The comparison value.
+	/// </summary>
+	public required T Value { get; init; }
+}
+
+/// <summary>
+/// A validator that ensures that a value falls within a specified range.
+/// </summary>
+/// <typeparam name="T">The type of comparison values.</typeparam>
+public class RangeValidator<T>: Validator {
+
+	/// <summary>
+	/// The lower bound.
+	/// </summary>
+	public required T LowerBound { get; init; }
+
+	/// <summary>
+	/// The upper bound.
+	/// </summary>
+	public required T UpperBound { get; init; }
+}
