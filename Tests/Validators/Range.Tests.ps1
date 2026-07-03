@@ -17,7 +17,7 @@ Describe "New-ValidatorRange" {
 			@{ Value = 456; From = 123; To = 666 }
 			@{ Value = 100.99; From = 100; To = 101 }
 		) {
-			(New-ValidatorRange $from $to "Reason" -Exclusive).IsValid($value) | Should -BeTrue
+			(New-ValidatorRange $from $to -Exclusive "Reason").IsValid($value) | Should -BeTrue
 		}
 
 		It "should return `$false if the specified value is outside the given bounds" -ForEach @(
@@ -25,7 +25,7 @@ Describe "New-ValidatorRange" {
 			@{ Value = 0; From = 1; To = 2 }
 			@{ Value = -456; From = -123; To = 0 }
 		) {
-			(New-ValidatorRange $from $to "Reason" -Exclusive).IsValid($value) | Should -BeFalse
+			(New-ValidatorRange $from $to -Exclusive "Reason").IsValid($value) | Should -BeFalse
 		}
 	}
 
