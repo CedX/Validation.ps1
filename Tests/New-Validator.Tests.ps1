@@ -6,9 +6,9 @@ using module ../Validation.psd1
 	Tests the features of the `New-Validator` cmdlet.
 #>
 Describe "New-Validator" {
-	Context "ImplicitConversion" {
+	Context "ExplicitConversion" {
 		It "should create a validator from the specified hash table" {
-			[Belin.Validation.Validator] $validator = @{ Reason = "An error occurred."; Test = { $false } }
+			$validator = [Belin.Validation.Validator] @{ Reason = "An error occurred."; Test = { $false } }
 			$validator.Reason | Should -BeExactly "An error occurred."
 			$validator.Test | Should -BeOfType ([scriptblock])
 		}
@@ -21,7 +21,7 @@ Describe "New-Validator" {
 		) {
 			$scriptBlock = {
 				[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "validator")]
-				[Belin.Validation.Validator] $validator = $_
+				$validator = [Belin.Validation.Validator] $_
 			}
 
 			$scriptBlock | Should -Throw

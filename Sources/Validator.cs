@@ -36,7 +36,7 @@ public class Validator {
 	/// <param name="hashtable">The hash table providing the validator properties.</param>
 	/// <returns>The validator corresponding to the specified hash table.</returns>
 	/// <exception cref="ArgumentException">The error message or the script block is missing or invalid.</exception>
-	public static implicit operator Validator(Hashtable hashtable) => new() {
+	public static explicit operator Validator(Hashtable hashtable) => new() {
 		Reason = hashtable["Reason"] is string reason ? reason : throw new ArgumentException("The error message is missing or invalid.", nameof(hashtable)),
 		Test = hashtable["Test"] is ScriptBlock test ? test : throw new ArgumentException("The script block is missing or invalid.", nameof(hashtable))
 	};
