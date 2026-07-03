@@ -16,6 +16,7 @@
 
 	FunctionsToExport = @(
 		"New-Validator"
+		"New-ValidatorBetween"
 		"New-ValidatorEmpty"
 		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"

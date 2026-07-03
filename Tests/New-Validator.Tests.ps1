@@ -35,7 +35,7 @@ Describe "New-Validator" {
 			@{ Value = "foo"; Test = { $_ -ceq "FOO" } }
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Belin" } }
 		) {
-			$validator = New-Validator "An error occurred." $test
+			$validator = New-Validator "Reason" $test
 			$validator.IsValid($value) | Should -BeFalse
 		}
 
@@ -45,14 +45,14 @@ Describe "New-Validator" {
 			@{ Value = "foo"; Test = { $_ -eq "FOO" } }
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Cédric" } }
 		) {
-			$validator = New-Validator "An error occurred." $test
+			$validator = New-Validator "Reason" $test
 			$validator.IsValid($value) | Should -BeTrue
 		}
 	}
 
 	Context "Reason" {
 		It "should be editable from the validation script block" {
-			$validator = New-Validator "An error occurred." {
+			$validator = New-Validator "Reason" {
 				$this.Reason = "The error message has been updated."
 				return $false
 			}
