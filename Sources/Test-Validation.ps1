@@ -25,8 +25,7 @@ function Test-Validation {
 		$errors = @{}
 
 		foreach ($property in $RuleSet.Keys) {
-			$validators = @($RuleSet[$property])
-			foreach ($item in $validators) {
+			foreach ($item in @($RuleSet[$property])) {
 				$validator = [Validator] $item
 				if (-not $validator.IsValid($Object.$property)) {
 					$errors[$property] = $validator.Reason
