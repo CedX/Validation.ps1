@@ -1,5 +1,5 @@
 # Validation for PowerShell
-TODO
+A simple yet effective validation module specifically designed for [PowerShell](https://learn.microsoft.com/en-us/powershell).
 
 ## Quick start
 Install the latest version of **Validation for PowerShell**
