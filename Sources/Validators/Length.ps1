@@ -10,12 +10,12 @@ function New-ValidatorLength {
 	[CmdletBinding()]
 	[OutputType([Belin.Validation.Validator])]
 	param (
-		# The minimum length.
+		# The minimum required length.
 		[Parameter(Mandatory, Position = 0)]
 		[ValidateRange("NonNegative")]
 		[int] $Minimum,
 
-		# The maximum length.
+		# The maximum required length.
 		[Parameter(Mandatory, Position = 1)]
 		[ValidateRange("NonNegative")]
 		[int] $Maximum,
@@ -47,7 +47,7 @@ function New-ValidatorMaxLength {
 	[CmdletBinding()]
 	[OutputType([Belin.Validation.Validator])]
 	param (
-		# The value to compare.
+		# The maximum required length.
 		[Parameter(Mandatory, Position = 0)]
 		[ValidateRange("NonNegative")]
 		[int] $Value,
@@ -74,7 +74,7 @@ function New-ValidatorMinLength {
 	[CmdletBinding()]
 	[OutputType([Belin.Validation.Validator])]
 	param (
-		# The value to compare.
+		# The minimum required length.
 		[Parameter(Mandatory, Position = 0)]
 		[ValidateRange("NonNegative")]
 		[int] $Value,

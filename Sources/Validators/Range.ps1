@@ -6,15 +6,15 @@
 .OUTPUTS
 	The newly created validator.
 #>
-function New-ValidatorBetween {
+function New-ValidatorRange {
 	[CmdletBinding()]
 	[OutputType([Belin.Validation.Validator])]
 	param (
-		# The minimum value.
+		# The minimum value of the range allowed.
 		[Parameter(Mandatory, Position = 0)]
 		[object] $From,
 
-		# The maximum value.
+		# The maximum value of the range allowed.
 		[Parameter(Mandatory, Position = 1)]
 		[object] $To,
 

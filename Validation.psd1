@@ -16,7 +16,6 @@
 
 	FunctionsToExport = @(
 		"New-Validator"
-		"New-ValidatorBetween"
 		"New-ValidatorEmpty"
 		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"
@@ -30,6 +29,8 @@
 		"New-ValidatorNotEqual"
 		"New-ValidatorNotNull"
 		"New-ValidatorNull"
+		"New-ValidatorRange"
+		"Test-Validation"
 	)
 
 	PrivateData = @{
