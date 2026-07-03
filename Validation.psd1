@@ -42,7 +42,7 @@
 			LicenseUri = "https://github.com/CedX/Validation.ps1/blob/main/License.md"
 			ProjectUri = "https://github.com/CedX/Validation.ps1"
 			ReleaseNotes = "https://github.com/CedX/Validation.ps1/releases"
-			Tags = "data", "dto", "validator", "validation"
+			Tags = "data", "dto", "form", "validator", "validation"
 		}
 	}
 }
