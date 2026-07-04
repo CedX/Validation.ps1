@@ -5,7 +5,7 @@ using module ../../Validation.psd1
 	Tests the features of the `New-ValidatorNull` cmdlet.
 #>
 Describe "New-ValidatorNull" {
-	It "should return `$true if the specified value is `$null"  {
+	It "should return `$true if the specified value is `$null" {
 		(New-ValidatorNull "Reason").IsValid($null) | Should -BeTrue
 	}
 
@@ -23,7 +23,7 @@ Describe "New-ValidatorNotNull" {
 		(New-ValidatorNotNull "Reason").IsValid($_) | Should -BeTrue
 	}
 
-	It "should return `$false if the specified value is `$null"  {
+	It "should return `$false if the specified value is `$null" {
 		(New-ValidatorNotNull "Reason").IsValid($null) | Should -BeFalse
 	}
 }

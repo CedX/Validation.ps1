@@ -19,6 +19,10 @@ Describe "New-ValidatorLength" {
 		(New-ValidatorLength $minimum $maximum "Reason").IsValid($value) | Should -BeFalse
 	}
 
+	It "should return `$false if the validated value is not a string" {
+		(New-ValidatorLength 0 1000 "Reason").IsValid(123) | Should -BeFalse
+	}
+
 	It "should throw an exception if the minimum length is greater than the maximum length" {
 		{ New-ValidatorLength 10 5 "Reason" } | Should -Throw
 	}
@@ -42,6 +46,10 @@ Describe "New-ValidatorMaxLength" {
 	) {
 		(New-ValidatorMaxLength $length "Reason").IsValid($value) | Should -BeFalse
 	}
+
+	It "should return `$false if the validated value is not a string" {
+		(New-ValidatorMaxLength 1000 "Reason").IsValid(123) | Should -BeFalse
+	}
 }
 
 <#
@@ -61,5 +69,9 @@ Describe "New-ValidatorMinLength" {
 		@{ Value = "bar"; Length = 5 }
 	) {
 		(New-ValidatorMinLength $length "Reason").IsValid($value) | Should -BeFalse
+	}
+
+	It "should return `$false if the validated value is not a string" {
+		(New-ValidatorMinLength 1000 "Reason").IsValid(123) | Should -BeFalse
 	}
 }

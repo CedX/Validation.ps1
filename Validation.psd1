@@ -16,6 +16,7 @@
 
 	FunctionsToExport = @(
 		"New-Validator"
+		"New-ValidatorCreditCard"
 		"New-ValidatorEmpty"
 		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"

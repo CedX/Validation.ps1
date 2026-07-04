@@ -32,7 +32,7 @@ function New-ValidatorLength {
 	return [RangeValidator[int]]@{
 		LowerBound = $Minimum
 		Reason = $Reason
-		Test = { ($_.Length -ge $this.LowerBound) -and ($_.Length -le $this.UpperBound) }
+		Test = { ($_ -is [string]) -and ($_.Length -ge $this.LowerBound) -and ($_.Length -le $this.UpperBound) }
 		UpperBound = $Maximum
 	}
 }
@@ -59,7 +59,7 @@ function New-ValidatorMaxLength {
 
 	return [ComparisonValidator[int]]@{
 		Reason = $Reason
-		Test = { $_.Length -le $this.Value }
+		Test = { ($_ -is [string]) -and ($_.Length -le $this.Value) }
 		Value = $Value
 	}
 }
@@ -86,7 +86,7 @@ function New-ValidatorMinLength {
 
 	return [ComparisonValidator[int]]@{
 		Reason = $Reason
-		Test = { $_.Length -ge $this.Value }
+		Test = { ($_ -is [string]) -and ($_.Length -ge $this.Value) }
 		Value = $Value
 	}
 }
