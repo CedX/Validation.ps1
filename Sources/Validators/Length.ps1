@@ -13,27 +13,27 @@ function New-ValidatorLength {
 		# The minimum required length.
 		[Parameter(Mandatory, Position = 0)]
 		[ValidateRange("NonNegative")]
-		[int] $Minimum,
+		[int] $Min,
 
 		# The maximum required length.
 		[Parameter(Mandatory, Position = 1)]
 		[ValidateRange("NonNegative")]
-		[int] $Maximum,
+		[int] $Max,
 
 		# The error message describing the validation failure.
 		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason
 	)
 
-	if ($Maximum -lt $Minimum) {
-		throw [ArgumentOutOfRangeException]::new("Maximum", "The maximum length is less than the minimum length.")
+	if ($Max -lt $Min) {
+		throw [ArgumentOutOfRangeException]::new("Max", "The maximum length is less than the minimum length.")
 	}
 
 	return [RangeValidator]@{
-		LowerBound = $Minimum
+		LowerBound = $Min
 		Reason = $Reason
 		Test = { ($_ -is [string]) -and ($_.Length -ge $this.LowerBound) -and ($_.Length -le $this.UpperBound) }
-		UpperBound = $Maximum
+		UpperBound = $Max
 	}
 }
 
