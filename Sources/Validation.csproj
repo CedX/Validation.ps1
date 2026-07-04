@@ -4,7 +4,7 @@
 		<Copyright>© Cédric Belin</Copyright>
 		<Description>TODO</Description>
 		<Product>Validation for PowerShell</Product>
-		<Version>0.1.1</Version>
+		<Version>0.2.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
