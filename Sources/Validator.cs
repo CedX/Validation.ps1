@@ -54,7 +54,7 @@ public class ComparisonValidator: Validator {
 }
 
 /// <summary>
-/// A validator that ensures that a value falls within a specified range.
+/// A validator that ensures a value falls within a specified range.
 /// </summary>
 public class RangeValidator: Validator {
 
