@@ -6,7 +6,7 @@
 	Author = "Cédric Belin <cedx@outlook.com>"
 	CompanyName = "Cedric-Belin.fr"
 	Copyright = "© Cédric Belin"
-	Description = "A simple yet effective validation module specifically designed for PowerShell."
+	Description = "A simple yet effective validation engine specifically designed for PowerShell."
 	GUID = "9c428994-d95d-48c8-af60-8b5db25e22b4"
 
 	AliasesToExport = @()
