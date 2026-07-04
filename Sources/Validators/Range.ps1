@@ -30,7 +30,7 @@ function New-ValidatorRange {
 		throw [ArgumentOutOfRangeException]::new("To", "The maximum value is less than the minimum value.")
 	}
 
-	return [RangeValidator[object]]@{
+	return [RangeValidator]@{
 		LowerBound = $From
 		Reason = $Reason
 		Test = $Exclusive ? { ($_ -gt $this.LowerBound) -and ($_ -lt $this.UpperBound) } : { ($_ -ge $this.LowerBound) -and ($_ -le $this.UpperBound) }

@@ -24,7 +24,7 @@ function New-ValidatorLessThan {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[object]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -clt $this.Value } : { $_ -ilt $this.Value }
 		Value = $Value
@@ -55,7 +55,7 @@ function New-ValidatorLessThanOrEqual {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[object]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cle $this.Value } : { $_ -ile $this.Value }
 		Value = $Value

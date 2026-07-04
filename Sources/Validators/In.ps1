@@ -22,7 +22,7 @@ function New-ValidatorIn {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[object[]]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cin $this.Value } : { $_ -iin $this.Value }
 		Value = $Values
@@ -51,7 +51,7 @@ function New-ValidatorNotIn {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[object[]]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cnotin $this.Value } : { $_ -inotin $this.Value }
 		Value = $Values

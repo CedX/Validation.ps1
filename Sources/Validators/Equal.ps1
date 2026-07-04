@@ -24,7 +24,7 @@ function New-ValidatorEqual {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[object]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -ceq $this.Value } : { $_ -ieq $this.Value }
 		Value = $Value
@@ -55,7 +55,7 @@ function New-ValidatorNotEqual {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[object]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cne $this.Value } : { $_ -ine $this.Value }
 		Value = $Value

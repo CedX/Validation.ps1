@@ -22,7 +22,7 @@ function New-ValidatorLike {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[string]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -clike $this.Value } : { $_ -ilike $this.Value }
 		Value = $Pattern
@@ -51,7 +51,7 @@ function New-ValidatorNotLike {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator[string]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cnotlike $this.Value } : { $_ -inotlike $this.Value }
 		Value = $Pattern

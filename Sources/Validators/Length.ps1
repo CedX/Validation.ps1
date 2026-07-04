@@ -29,7 +29,7 @@ function New-ValidatorLength {
 		throw [ArgumentOutOfRangeException]::new("Maximum", "The maximum length is less than the minimum length.")
 	}
 
-	return [RangeValidator[int]]@{
+	return [RangeValidator]@{
 		LowerBound = $Minimum
 		Reason = $Reason
 		Test = { ($_ -is [string]) -and ($_.Length -ge $this.LowerBound) -and ($_.Length -le $this.UpperBound) }
@@ -57,7 +57,7 @@ function New-ValidatorMaxLength {
 		[string] $Reason
 	)
 
-	return [ComparisonValidator[int]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = { ($_ -is [string]) -and ($_.Length -le $this.Value) }
 		Value = $Value
@@ -84,7 +84,7 @@ function New-ValidatorMinLength {
 		[string] $Reason
 	)
 
-	return [ComparisonValidator[int]]@{
+	return [ComparisonValidator]@{
 		Reason = $Reason
 		Test = { ($_ -is [string]) -and ($_.Length -ge $this.Value) }
 		Value = $Value
