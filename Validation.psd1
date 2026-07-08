@@ -1,5 +1,5 @@
 @{
-	ModuleVersion = "0.2.0"
+	ModuleVersion = "0.3.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Main.psm1"
 
@@ -17,6 +17,7 @@
 	FunctionsToExport = @(
 		"New-Validator"
 		"New-ValidatorCreditCard"
+		"New-ValidatorEmail"
 		"New-ValidatorEmpty"
 		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"

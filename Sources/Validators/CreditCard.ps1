@@ -2,7 +2,7 @@
 
 <#
 .SYNOPSIS
-	Creates a new validator that ensures the validated value is a well formed credit card number.
+	Creates a new validator that ensures the validated value is a well-formed credit card number.
 .OUTPUTS
 	The newly created validator.
 #>
