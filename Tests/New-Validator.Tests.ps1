@@ -36,7 +36,7 @@ Describe "New-Validator" {
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Belin" } }
 		) {
 			$validator = New-Validator "Reason" $test
-			$validator.IsValid($value) | Should -BeFalse
+			$validator.IsValid($value) | Should-BeFalse
 		}
 
 		It "should return `$true if the validated value is valid" -ForEach @(
@@ -46,7 +46,7 @@ Describe "New-Validator" {
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Cédric" } }
 		) {
 			$validator = New-Validator "Reason" $test
-			$validator.IsValid($value) | Should -BeTrue
+			$validator.IsValid($value) | Should-BeTrue
 		}
 	}
 

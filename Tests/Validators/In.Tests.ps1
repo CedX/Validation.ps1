@@ -9,14 +9,14 @@ Describe "New-ValidatorIn" {
 		@{ Property = "FOO"; Values = "foo", "bar", "baz" }
 		@{ Property = 123; Values = 123, 456, 789 }
 	) {
-		(New-ValidatorIn $values "Reason").IsValid($property) | Should -BeTrue
+		(New-ValidatorIn $values "Reason").IsValid($property) | Should-BeTrue
 	}
 
 	It "should return `$false if the property does not match an element from a set of values" -ForEach @(
 		@{ Property = "ABC"; Values = "AB", "CD", "EF" }
 		@{ Property = 666; Values = 123, 456, 789 }
 	) {
-		(New-ValidatorIn $values "Reason").IsValid($property) | Should -BeFalse
+		(New-ValidatorIn $values "Reason").IsValid($property) | Should-BeFalse
 	}
 }
 
@@ -29,13 +29,13 @@ Describe "New-ValidatorNotIn" {
 		@{ Property = "ABC"; Values = "AB", "CD", "EF" }
 		@{ Property = 666; Values = 123, 456, 789 }
 	) {
-		(New-ValidatorNotIn $values "Reason").IsValid($property) | Should -BeTrue
+		(New-ValidatorNotIn $values "Reason").IsValid($property) | Should-BeTrue
 	}
 
 	It "should return `$false if the property matches an element from a set of values" -ForEach @(
 		@{ Property = "FOO"; Values = "foo", "bar", "baz" }
 		@{ Property = 123; Values = 123, 456, 789 }
 	) {
-		(New-ValidatorNotIn $values "Reason").IsValid($property) | Should -BeFalse
+		(New-ValidatorNotIn $values "Reason").IsValid($property) | Should-BeFalse
 	}
 }

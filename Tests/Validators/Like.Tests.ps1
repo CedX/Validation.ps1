@@ -11,7 +11,7 @@ Describe "New-ValidatorLike" {
 		@{ Value = "bar"; Pattern = "ba*" }
 		@{ Value = "baz"; Pattern = "*z" }
 	) {
-		(New-ValidatorLike $pattern "Reason").IsValid($value) | Should -BeTrue
+		(New-ValidatorLike $pattern "Reason").IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the value does not match the specified pattern" -ForEach @(
@@ -20,7 +20,7 @@ Describe "New-ValidatorLike" {
 		@{ Value = "baz"; Pattern = "*ar" }
 		@{ Value = "qux"; Pattern = "qi*" }
 	) {
-		(New-ValidatorLike $pattern "Reason").IsValid($value) | Should -BeFalse
+		(New-ValidatorLike $pattern "Reason").IsValid($value) | Should-BeFalse
 	}
 }
 
@@ -35,7 +35,7 @@ Describe "New-ValidatorNotLike" {
 		@{ Value = "baz"; Pattern = "*ar" }
 		@{ Value = "qux"; Pattern = "qi*" }
 	) {
-		(New-ValidatorNotLike $pattern "Reason").IsValid($value) | Should -BeTrue
+		(New-ValidatorNotLike $pattern "Reason").IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the value matches the specified pattern" -ForEach @(
@@ -44,6 +44,6 @@ Describe "New-ValidatorNotLike" {
 		@{ Value = "bar"; Pattern = "ba*" }
 		@{ Value = "baz"; Pattern = "*z" }
 	) {
-		(New-ValidatorNotLike $pattern "Reason").IsValid($value) | Should -BeFalse
+		(New-ValidatorNotLike $pattern "Reason").IsValid($value) | Should-BeFalse
 	}
 }

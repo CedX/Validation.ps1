@@ -11,7 +11,7 @@ Describe "New-ValidatorLessThan" {
 		@{ Property = 0; Value = 1.5 }
 		@{ Property = "A"; Value = "B" }
 	) {
-		(New-ValidatorLessThan $value "Reason").IsValid($property) | Should -BeTrue
+		(New-ValidatorLessThan $value "Reason").IsValid($property) | Should-BeTrue
 	}
 
 	It "should return `$false if the property is greater than or equal to the specified value" -ForEach @(
@@ -23,7 +23,7 @@ Describe "New-ValidatorLessThan" {
 		@{ Property = "a"; Value = "a" }
 		@{ Property = "B"; Value = "A" }
 	) {
-		(New-ValidatorLessThan $value "Reason").IsValid($property) | Should -BeFalse
+		(New-ValidatorLessThan $value "Reason").IsValid($property) | Should-BeFalse
 	}
 }
 
@@ -40,7 +40,7 @@ Describe "New-ValidatorLessThanOrEqual" {
 		@{ Property = "a"; Value = "a" }
 		@{ Property = "A"; Value = "B" }
 	) {
-		(New-ValidatorLessThanOrEqual $value "Reason").IsValid($property) | Should -BeTrue
+		(New-ValidatorLessThanOrEqual $value "Reason").IsValid($property) | Should-BeTrue
 	}
 
 	It "should return `$false if the property is greater than the specified value" -ForEach @(
@@ -50,6 +50,6 @@ Describe "New-ValidatorLessThanOrEqual" {
 		@{ Property = 1.5; Value = 0 }
 		@{ Property = "B"; Value = "A" }
 	) {
-		(New-ValidatorLessThanOrEqual $value "Reason").IsValid($property) | Should -BeFalse
+		(New-ValidatorLessThanOrEqual $value "Reason").IsValid($property) | Should-BeFalse
 	}
 }
