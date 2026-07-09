@@ -15,6 +15,7 @@ function New-ValidatorEmail {
 
 	New-Validator $Reason {
 		if (($_ -isnot [string]) -or ($_ -match "[\n\r]")) { return $false }
-		($index = $_.IndexOf("@") -gt 0) -and ($index -ne $_.Length - 1) -and ($index -eq $_.LastIndexOf("@"))
+		$index = $_.IndexOf("@")
+		($index -gt 0) -and ($index -lt ($_.Length - 1)) -and ($index -eq $_.LastIndexOf("@"))
 	}
 }
