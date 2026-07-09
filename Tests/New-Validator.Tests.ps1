@@ -9,8 +9,8 @@ Describe "New-Validator" {
 	Context "ExplicitConversion" {
 		It "should create a validator from the specified hash table" {
 			$validator = [Belin.Validation.Validator] @{ Reason = "An error occurred."; Test = { $false } }
-			$validator.Reason | Should -BeExactly "An error occurred."
-			$validator.Test | Should -BeOfType ([scriptblock])
+			Should-BeString "An error occurred." $validator.Reason -CaseSensitive
+			Should-HaveType ([scriptblock]) $validator.Test
 		}
 
 		It "should throw an exception when the hash table does not provide the expected properties" -ForEach @(
@@ -19,12 +19,10 @@ Describe "New-Validator" {
 			@{ Reason = 123; Test = { $false } }
 			@{ Reason = "An error occurred."; Test = "false" }
 		) {
-			$scriptBlock = {
+			Should-Throw -ScriptBlock {
 				[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "validator")]
 				$validator = [Belin.Validation.Validator] $_
 			}
-
-			$scriptBlock | Should -Throw
 		}
 	}
 
@@ -36,7 +34,7 @@ Describe "New-Validator" {
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Belin" } }
 		) {
 			$validator = New-Validator "Reason" $test
-			$validator.IsValid($value) | Should-BeFalse
+			Should-BeFalse $validator.IsValid($value)
 		}
 
 		It "should return `$true if the validated value is valid" -ForEach @(
@@ -46,7 +44,7 @@ Describe "New-Validator" {
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Cédric" } }
 		) {
 			$validator = New-Validator "Reason" $test
-			$validator.IsValid($value) | Should-BeTrue
+			Should-BeTrue $validator.IsValid($value)
 		}
 	}
 
@@ -58,7 +56,7 @@ Describe "New-Validator" {
 			}
 
 			$validator.IsValid(123)
-			$validator.Reason | Should -BeExactly "The error message has been updated."
+			Should-BeString "The error message has been updated." $validator.Reason -CaseSensitive
 		}
 	}
 }

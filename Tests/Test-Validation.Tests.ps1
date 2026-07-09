@@ -17,15 +17,15 @@ Describe "Test-Validation" {
 	It "should return an empty hash table if there are no validation errors" {
 		foreach ($instance in $hashtable, $object) {
 			$errors = Test-Validation $instance @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
-			$errors.Count | Should -Be 0
+			Should-Be 0 $errors.Count
 		}
 	}
 
 	It "should return a non-empty hash table if there are validation errors" -ForEach $hashtable, $object {
 		foreach ($instance in $hashtable, $object) {
 			$errors = Test-Validation $instance @{ LastName = New-ValidatorNotEmpty "The last name is required." }
-			$errors.Count | Should -Be 1
-			$errors.LastName | Should -BeExactly "The last name is required."
+			Should-Be 1 $errors.Count
+			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
 		}
 	}
 
@@ -38,10 +38,10 @@ Describe "Test-Validation" {
 				Password = (New-ValidatorNotEmpty "The password is empty."), (New-ValidatorMinLength 5 "The password is too short.")
 			}
 
-			$errors.Count | Should -Be 3
-			$errors.Gender | Should -BeExactly "Only women are allowed."
-			$errors.LastName | Should -BeExactly "The last name is required."
-			$errors.Password | Should -BeExactly "The password is empty."
+			Should-Be 3 $errors.Count
+			Should-BeString "Only women are allowed." $errors.Gender -CaseSensitive
+			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
+			Should-BeString "The password is empty." $errors.Password -CaseSensitive
 		}
 	}
 }

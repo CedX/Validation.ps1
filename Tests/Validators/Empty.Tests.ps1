@@ -6,11 +6,11 @@ using module ../../Validation.psd1
 #>
 Describe "New-ValidatorEmpty" {
 	It "should return `$true if the specified value is empty" -ForEach $null, $false, "  ", @(), @{} {
-		(New-ValidatorEmpty "Reason").IsValid($_) | Should-BeTrue
+		Should-BeTrue (New-ValidatorEmpty "Reason").IsValid($_)
 	}
 
 	It "should return `$false if the specified value is not empty" -ForEach $true, 1, "foo", @("foo"), @{ Foo = "bar" }, ([pscustomobject]@{}) {
-		(New-ValidatorEmpty "Reason").IsValid($_) | Should-BeFalse
+		Should-BeFalse (New-ValidatorEmpty "Reason").IsValid($_)
 	}
 }
 
@@ -20,10 +20,10 @@ Describe "New-ValidatorEmpty" {
 #>
 Describe "New-ValidatorNotEmpty" {
 	It "should return `$true if the specified value is not empty" -ForEach $true, 1, "foo", @("foo"), @{ Foo = "bar" }, ([pscustomobject]@{}) {
-		(New-ValidatorNotEmpty "Reason").IsValid($_) | Should-BeTrue
+		Should-BeTrue (New-ValidatorNotEmpty "Reason").IsValid($_)
 	}
 
 	It "should return `$false if the specified value is empty" -ForEach $null, $false, "  ", @(), @{} {
-		(New-ValidatorNotEmpty "Reason").IsValid($_) | Should-BeFalse
+		Should-BeFalse (New-ValidatorNotEmpty "Reason").IsValid($_)
 	}
 }

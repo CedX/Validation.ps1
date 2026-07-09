@@ -14,7 +14,7 @@ Describe "New-ValidatorCreditCard" {
 		"340-3161-9380-9364"
 		"6011000990139424"
 	) {
-		(New-ValidatorCreditCard "Reason").IsValid($_) | Should-BeTrue
+		Should-BeTrue (New-ValidatorCreditCard "Reason").IsValid($_)
 	}
 
 	It "should return `$false if the specified value is not a well-formed credit card number" -ForEach @(
@@ -23,6 +23,6 @@ Describe "New-ValidatorCreditCard" {
 		"1234 1234 1234 1234"
 		"It isn't my credit card number"
 	) {
-		(New-ValidatorCreditCard "Reason").IsValid($_) | Should-BeFalse
+		Should-BeFalse (New-ValidatorCreditCard "Reason").IsValid($_)
 	}
 }

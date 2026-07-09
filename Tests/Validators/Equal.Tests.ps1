@@ -11,7 +11,7 @@ Describe "New-ValidatorEqual" {
 		@{ Property = 123; Value = 123 }
 		@{ Property = "foo"; Value = "FOO" }
 	) {
-		(New-ValidatorEqual $value "Reason").IsValid($property) | Should-BeTrue
+		Should-BeTrue (New-ValidatorEqual $value "Reason").IsValid($property)
 	}
 
 	It "should return `$false if the property does not equal the specified value" -ForEach @(
@@ -20,7 +20,7 @@ Describe "New-ValidatorEqual" {
 		@{ Property = 123; Value = 456 }
 		@{ Property = "foo"; Value = "bar" }
 	) {
-		(New-ValidatorEqual $value "Reason").IsValid($property) | Should-BeFalse
+		Should-BeFalse (New-ValidatorEqual $value "Reason").IsValid($property)
 	}
 }
 
@@ -35,7 +35,7 @@ Describe "New-ValidatorNotEqual" {
 		@{ Property = 123; Value = 456 }
 		@{ Property = "foo"; Value = "bar" }
 	) {
-		(New-ValidatorNotEqual $value "Reason").IsValid($property) | Should-BeTrue
+		Should-BeTrue (New-ValidatorNotEqual $value "Reason").IsValid($property)
 	}
 
 	It "should return `$false if the property equals the specified value" -ForEach @(
@@ -44,6 +44,6 @@ Describe "New-ValidatorNotEqual" {
 		@{ Property = 123; Value = 123 }
 		@{ Property = "foo"; Value = "FOO" }
 	) {
-		(New-ValidatorNotEqual $value "Reason").IsValid($property) | Should-BeFalse
+		Should-BeFalse (New-ValidatorNotEqual $value "Reason").IsValid($property)
 	}
 }
