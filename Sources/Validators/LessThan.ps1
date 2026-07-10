@@ -8,7 +8,7 @@
 #>
 function New-ValidatorLessThan {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 1)]
@@ -24,7 +24,7 @@ function New-ValidatorLessThan {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -clt $this.Value } : { $_ -ilt $this.Value }
 		Value = $Value
@@ -39,7 +39,7 @@ function New-ValidatorLessThan {
 #>
 function New-ValidatorLessThanOrEqual {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 1)]
@@ -55,7 +55,7 @@ function New-ValidatorLessThanOrEqual {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cle $this.Value } : { $_ -ile $this.Value }
 		Value = $Value

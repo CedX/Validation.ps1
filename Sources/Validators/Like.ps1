@@ -8,7 +8,7 @@
 #>
 function New-ValidatorLike {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The pattern to match.
 		[Parameter(Mandatory, Position = 1)]
@@ -22,7 +22,7 @@ function New-ValidatorLike {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -clike $this.Value } : { $_ -ilike $this.Value }
 		Value = $Pattern
@@ -37,7 +37,7 @@ function New-ValidatorLike {
 #>
 function New-ValidatorNotLike {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The pattern to match.
 		[Parameter(Mandatory, Position = 1)]
@@ -51,7 +51,7 @@ function New-ValidatorNotLike {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cnotlike $this.Value } : { $_ -inotlike $this.Value }
 		Value = $Pattern

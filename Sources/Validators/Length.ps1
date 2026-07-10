@@ -8,7 +8,7 @@
 #>
 function New-ValidatorLength {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.RangeValidator])]
 	param (
 		# The minimum required length.
 		[Parameter(Mandatory, Position = 1)]
@@ -29,7 +29,7 @@ function New-ValidatorLength {
 		throw [ArgumentOutOfRangeException]::new("Max", "The maximum length is less than the minimum length.")
 	}
 
-	return [RangeValidator]@{
+	[RangeValidator]@{
 		LowerBound = $Min
 		Reason = $Reason
 		Test = { ($_ -is [string]) -and ($_.Length -ge $this.LowerBound) -and ($_.Length -le $this.UpperBound) }
@@ -45,7 +45,7 @@ function New-ValidatorLength {
 #>
 function New-ValidatorMaxLength {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The maximum required length.
 		[Parameter(Mandatory, Position = 1)]
@@ -57,7 +57,7 @@ function New-ValidatorMaxLength {
 		[string] $Reason
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = { ($_ -is [string]) -and ($_.Length -le $this.Value) }
 		Value = $Value
@@ -72,7 +72,7 @@ function New-ValidatorMaxLength {
 #>
 function New-ValidatorMinLength {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The minimum required length.
 		[Parameter(Mandatory, Position = 1)]
@@ -84,7 +84,7 @@ function New-ValidatorMinLength {
 		[string] $Reason
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = { ($_ -is [string]) -and ($_.Length -ge $this.Value) }
 		Value = $Value

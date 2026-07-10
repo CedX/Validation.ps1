@@ -8,7 +8,7 @@ using namespace Belin.Validation
 #>
 function New-ValidatorGreaterThan {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 1)]
@@ -24,7 +24,7 @@ function New-ValidatorGreaterThan {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cgt $this.Value } : { $_ -igt $this.Value }
 		Value = $Value
@@ -39,7 +39,7 @@ function New-ValidatorGreaterThan {
 #>
 function New-ValidatorGreaterThanOrEqual {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 1)]
@@ -55,7 +55,7 @@ function New-ValidatorGreaterThanOrEqual {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cge $this.Value } : { $_ -ige $this.Value }
 		Value = $Value

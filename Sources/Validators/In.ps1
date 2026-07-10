@@ -8,7 +8,7 @@
 #>
 function New-ValidatorIn {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The set of possible values.
 		[Parameter(Mandatory, Position = 1)]
@@ -22,7 +22,7 @@ function New-ValidatorIn {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cin $this.Value } : { $_ -iin $this.Value }
 		Value = $Values
@@ -37,7 +37,7 @@ function New-ValidatorIn {
 #>
 function New-ValidatorNotIn {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The set of possible values.
 		[Parameter(Mandatory, Position = 1)]
@@ -51,7 +51,7 @@ function New-ValidatorNotIn {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cnotin $this.Value } : { $_ -inotin $this.Value }
 		Value = $Values

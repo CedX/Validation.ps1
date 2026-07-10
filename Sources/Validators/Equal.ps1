@@ -8,7 +8,7 @@
 #>
 function New-ValidatorEqual {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 1)]
@@ -24,7 +24,7 @@ function New-ValidatorEqual {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -ceq $this.Value } : { $_ -ieq $this.Value }
 		Value = $Value
@@ -39,7 +39,7 @@ function New-ValidatorEqual {
 #>
 function New-ValidatorNotEqual {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# The value to compare.
 		[Parameter(Mandatory, Position = 1)]
@@ -55,7 +55,7 @@ function New-ValidatorNotEqual {
 		[switch] $CaseSensitive
 	)
 
-	return [ComparisonValidator]@{
+	[ComparisonValidator]@{
 		Reason = $Reason
 		Test = $CaseSensitive ? { $_ -cne $this.Value } : { $_ -ine $this.Value }
 		Value = $Value
