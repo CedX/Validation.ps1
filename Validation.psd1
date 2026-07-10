@@ -11,7 +11,6 @@
 
 	AliasesToExport = @()
 	CmdletsToExport = @()
-	RequiredAssemblies = , "Binaries/Belin.Validation.dll"
 	VariablesToExport = @()
 
 	FunctionsToExport = @(
@@ -23,6 +22,7 @@
 		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"
 		"New-ValidatorGreaterThanOrEqual"
+		"New-ValidatorIban"
 		"New-ValidatorIn"
 		"New-ValidatorLength"
 		"New-ValidatorLessThan"
@@ -40,6 +40,11 @@
 		"New-ValidatorNull"
 		"New-ValidatorRange"
 		"Test-Validation"
+	)
+
+	RequiredAssemblies = @(
+		"Binaries/Belin.Validation.dll"
+		"Binaries/IbanNet.dll"
 	)
 
 	PrivateData = @{
