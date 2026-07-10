@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<Company>Cedric-Belin.fr</Company>
 		<Copyright>© Cédric Belin</Copyright>
-		<Description>TODO</Description>
+		<Description>A simple yet effective validation engine specifically designed for PowerShell.</Description>
 		<Product>Validation for PowerShell</Product>
 		<Version>0.3.0</Version>
 	</PropertyGroup>
