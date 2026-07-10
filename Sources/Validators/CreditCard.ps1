@@ -11,12 +11,12 @@ function New-ValidatorCreditCard {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $Reason
 	)
 
 	New-Validator $Reason {
-		$number = $_ -replace "[-. ]", ""
+		$number = $_ -replace "[-. ]"
 		if ($number -notmatch "^\d{8,19}$") { return $false }
 
 		$characters = $number.ToCharArray()

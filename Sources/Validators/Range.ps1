@@ -11,15 +11,15 @@ function New-ValidatorRange {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The minimum value of the range allowed.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[object] $From,
 
 		# The maximum value of the range allowed.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[object] $To,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 2)]
+		[Parameter(Mandatory, Position = 3)]
 		[string] $Reason,
 
 		# Value indicating whether the specified range is exclusive.

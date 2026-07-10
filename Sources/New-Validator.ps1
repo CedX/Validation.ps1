@@ -11,11 +11,11 @@ function New-Validator {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $Reason,
 
 		# The script block used to perform the validation.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[scriptblock] $Test
 	)
 

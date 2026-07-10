@@ -11,13 +11,13 @@ function New-ValidatorEqual {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The value to compare.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[AllowEmptyString()]
 		[AllowNull()]
 		[object] $Value,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason,
 
 		# Value indicating whether to perform a case-sensitive comparison.
@@ -42,13 +42,13 @@ function New-ValidatorNotEqual {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The value to compare.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[AllowEmptyString()]
 		[AllowNull()]
 		[object] $Value,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason,
 
 		# Value indicating whether to perform a case-sensitive comparison.

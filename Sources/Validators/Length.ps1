@@ -11,17 +11,17 @@ function New-ValidatorLength {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The minimum required length.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[ValidateRange("NonNegative")]
 		[int] $Min,
 
 		# The maximum required length.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[ValidateRange("NonNegative")]
 		[int] $Max,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 2)]
+		[Parameter(Mandatory, Position = 3)]
 		[string] $Reason
 	)
 
@@ -48,12 +48,12 @@ function New-ValidatorMaxLength {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The maximum required length.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[ValidateRange("NonNegative")]
 		[int] $Value,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason
 	)
 
@@ -75,12 +75,12 @@ function New-ValidatorMinLength {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The minimum required length.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[ValidateRange("NonNegative")]
 		[int] $Value,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason
 	)
 

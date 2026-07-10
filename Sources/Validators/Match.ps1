@@ -11,11 +11,11 @@ function New-ValidatorMatch {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The pattern to match.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $Pattern,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason,
 
 		# Value indicating whether to perform a case-sensitive comparison.
@@ -40,11 +40,11 @@ function New-ValidatorNotMatch {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The pattern to match.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $Pattern,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason,
 
 		# Value indicating whether to perform a case-sensitive comparison.

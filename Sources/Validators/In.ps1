@@ -11,11 +11,11 @@ function New-ValidatorIn {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The set of possible values.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[object[]] $Values,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason,
 
 		# Value indicating whether to perform a case-sensitive comparison.
@@ -40,11 +40,11 @@ function New-ValidatorNotIn {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The set of possible values.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[object[]] $Values,
 
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[string] $Reason,
 
 		# Value indicating whether to perform a case-sensitive comparison.

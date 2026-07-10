@@ -13,11 +13,11 @@ function Test-Validation {
 	[OutputType([hashtable])]
 	param (
 		# The object to validate.
-		[Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
 		[object] $Object,
 
 		# The set of validation rules to apply.
-		[Parameter(Mandatory, Position = 1)]
+		[Parameter(Mandatory, Position = 2)]
 		[hashtable] $RuleSet
 	)
 

@@ -9,7 +9,7 @@ function New-ValidatorNull {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $Reason
 	)
 
@@ -27,7 +27,7 @@ function New-ValidatorNotNull {
 	[OutputType([Belin.Validation.Validator])]
 	param (
 		# The error message describing the validation failure.
-		[Parameter(Mandatory, Position = 0)]
+		[Parameter(Mandatory, Position = 1)]
 		[string] $Reason
 	)
 
