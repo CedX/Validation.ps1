@@ -2,6 +2,7 @@
 
 ## Version [0.4.0](https://github.com/CedX/Validation.ps1/compare/v0.3.0...v0.4.0)
 - Breaking change: removed the `New-ValidatorIban` cmdlet.
+- Added the `New-ValidatorCount`, `New-ValidatorMaxCount` and `New-ValidatorMinCount` cmdlets.
 
 ## Version [0.3.0](https://github.com/CedX/Validation.ps1/compare/v0.2.0...v0.3.0)
 - Added the `New-ValidatorBase64`, `New-ValidatorEmail` and `New-ValidatorIban` cmdlets.

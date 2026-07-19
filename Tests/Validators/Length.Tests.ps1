@@ -6,17 +6,17 @@
 #>
 Describe "New-ValidatorLength" {
 	It "should return `$true if the length of the specified string falls between the given bounds" -ForEach @(
-		@{ Value = ""; Minimum = 0; Maximum = 0 }
-		@{ Value = "foo"; Minimum = 2; Maximum = 5 }
+		@{ Value = ""; Min = 0; Max = 0 }
+		@{ Value = "foo"; Min = 2; Max = 5 }
 	) {
-		Should-BeTrue (New-ValidatorLength $minimum $maximum "Reason").IsValid($value)
+		Should-BeTrue (New-ValidatorLength $min $max "Reason").IsValid($value)
 	}
 
 	It "should return `$false if the length of the specified string is outside the given bounds" -ForEach @(
-		@{ Value = "bar"; Minimum = 4; Maximum = 8 }
-		@{ Value = "baz"; Minimum = 1; Maximum = 2 }
+		@{ Value = "bar"; Min = 4; Max = 8 }
+		@{ Value = "baz"; Min = 1; Max = 2 }
 	) {
-		Should-BeFalse (New-ValidatorLength $minimum $maximum "Reason").IsValid($value)
+		Should-BeFalse (New-ValidatorLength $min $max "Reason").IsValid($value)
 	}
 
 	It "should return `$false if the validated value is not a string" {
