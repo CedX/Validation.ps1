@@ -42,6 +42,7 @@
 		"New-ValidatorNotNull"
 		"New-ValidatorNull"
 		"New-ValidatorRange"
+		"New-ValidatorUri"
 		"Test-Validation"
 	)
 
