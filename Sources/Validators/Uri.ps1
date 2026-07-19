@@ -15,6 +15,8 @@ function New-ValidatorUri {
 		[string] $Reason,
 
 		# The allowed schemes for the URI to validate.
+		[Parameter(Position = 2)]
+		[ValidateNotNullOrEmpty()]
 		[string[]] $Scheme = ("http", "https")
 	)
 
