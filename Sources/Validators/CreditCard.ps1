@@ -20,7 +20,7 @@ function New-ValidatorCreditCard {
 		if ($number -notmatch "^\d{8,19}$") { return $false }
 
 		$characters = $number.ToCharArray()
-		[Array]::Reverse($characters)
+		[array]::Reverse($characters)
 
 		$checksum = 0
 		$evenDigit = $false
