@@ -40,30 +40,3 @@ public class Validator {
 		Test = hashtable["Test"] is ScriptBlock test ? test : throw new ArgumentException("The script block is missing or invalid.", nameof(hashtable))
 	};
 }
-
-/// <summary>
-/// A validator that compares a value to another reference value.
-/// </summary>
-public class ComparisonValidator: Validator {
-
-	/// <summary>
-	/// The comparison value.
-	/// </summary>
-	public required object? Value { get; init; }
-}
-
-/// <summary>
-/// A validator that ensures a value falls within a specified range.
-/// </summary>
-public class RangeValidator: Validator {
-
-	/// <summary>
-	/// The lower bound.
-	/// </summary>
-	public required object LowerBound { get; init; }
-
-	/// <summary>
-	/// The upper bound.
-	/// </summary>
-	public required object UpperBound { get; init; }
-}
