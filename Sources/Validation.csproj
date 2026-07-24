@@ -10,7 +10,7 @@
 	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AssemblyName>Belin.Validation</AssemblyName>
-		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
 		<HotReloadAutoRestart>true</HotReloadAutoRestart>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
