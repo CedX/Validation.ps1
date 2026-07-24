@@ -2,7 +2,6 @@ namespace Belin.Validation;
 
 using System.Collections;
 using System.Globalization;
-using System.Management.Automation;
 
 /// <summary>
 /// A generic validator.
