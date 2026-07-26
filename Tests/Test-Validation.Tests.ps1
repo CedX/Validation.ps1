@@ -14,13 +14,13 @@ Describe "Test-Validation" {
 		$object = [pscustomobject] $hashtable
 	}
 
-	It "should return an empty hash table if there are no validation errors" {
+	It "should return `$true if there are no validation errors" {
 		foreach ($instance in $hashtable, $object) {
 			Should-BeTrue (Test-Validation $instance @{ FirstName = New-ValidatorNotEmpty "The first name is required." })
 		}
 	}
 
-	It "should return a non-empty hash table if there are validation errors" {
+	It "should return `$false if there are validation errors" {
 		foreach ($instance in $hashtable, $object) {
 			Should-BeFalse (Test-Validation $instance @{ LastName = New-ValidatorNotEmpty "The last name is required." })
 		}

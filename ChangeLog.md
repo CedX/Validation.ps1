@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.5.0](https://github.com/CedX/Validation.ps1/compare/v0.4.0...v0.5.0)
+- Breaking change: renamed the `Test-Validation` cmdlet to `Assert-Validation`.
+- Added a new `Test-Validation` cmdlet returning a boolean value instead of error messages.
+
 ## Version [0.4.0](https://github.com/CedX/Validation.ps1/compare/v0.3.0...v0.4.0)
 - Breaking change: removed the `New-ValidatorIban` cmdlet.
 - Added the `New-ValidatorCount`, `New-ValidatorMaxCount`, `New-ValidatorMinCount` and `New-ValidatorUri` cmdlets.
