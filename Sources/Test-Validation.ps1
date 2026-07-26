@@ -6,11 +6,11 @@
 .INPUTS
 	The object to validate.
 .OUTPUTS
-	The validation errors, if any.
+	`$true` if the validated object is valid, otherwise `$false`.
 #>
 function Test-Validation {
 	[CmdletBinding()]
-	[OutputType([hashtable])]
+	[OutputType([bool])]
 	param (
 		# The object to validate.
 		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
@@ -22,18 +22,13 @@ function Test-Validation {
 	)
 
 	process {
-		$errors = @{}
-
 		foreach ($property in $RuleSet.Keys) {
-			foreach ($item in @($RuleSet[$property])) {
-				$validator = [Validator] $item
-				if (-not $validator.IsValid($Object.$property)) {
-					$errors[$property] = $validator.Reason
-					break
-				}
+			foreach ($rule in @($RuleSet[$property])) {
+				$validator = [Validator] $rule
+				if (-not $validator.IsValid($Object.$property)) { return $false }
 			}
 		}
 
-		$errors
+		$true
 	}
 }
