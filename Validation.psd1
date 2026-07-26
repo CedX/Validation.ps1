@@ -1,5 +1,5 @@
 @{
-	ModuleVersion = "0.4.0"
+	ModuleVersion = "0.5.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Sources/Main.psm1"
 
@@ -15,6 +15,7 @@
 	VariablesToExport = @()
 
 	FunctionsToExport = @(
+		"Assert-Validation"
 		"New-Validator"
 		"New-ValidatorBase64"
 		"New-ValidatorCount"
