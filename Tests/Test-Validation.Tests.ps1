@@ -7,10 +7,10 @@ using module ../Validation.psd1
 #>
 Describe "Test-Validation" {
 	BeforeAll {
-		[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "")]
+		[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "hashtable")]
 		$hashtable = @{ FirstName = "Cédric"; Gender = "Male" }
 
-		[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "")]
+		[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "object")]
 		$object = [pscustomobject] $hashtable
 	}
 
