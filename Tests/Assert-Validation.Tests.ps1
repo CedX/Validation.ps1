@@ -11,27 +11,27 @@ Describe "Assert-Validation" {
 		$hashtable = @{ FirstName = "Cédric"; Gender = "Male" }
 
 		[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "object")]
-		$object = [pscustomobject] $hashtable
+		$psObject = [pscustomobject] $hashtable
 	}
 
 	It "should return an empty hash table if there are no validation errors" {
-		foreach ($instance in $hashtable, $object) {
-			$errors = Assert-Validation $instance @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
+		foreach ($object in $hashtable, $psObject) {
+			$errors = Assert-Validation $object @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
 			Should-Be 0 $errors.Count
 		}
 	}
 
 	It "should return a non-empty hash table if there are validation errors" {
-		foreach ($instance in $hashtable, $object) {
-			$errors = Assert-Validation $instance @{ LastName = New-ValidatorNotEmpty "The last name is required." }
+		foreach ($object in $hashtable, $psObject) {
+			$errors = Assert-Validation $object @{ LastName = New-ValidatorNotEmpty "The last name is required." }
 			Should-Be 1 $errors.Count
 			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
 		}
 	}
 
 	It "should support multiple validators per property" {
-		foreach ($instance in $hashtable, $object) {
-			$errors = Assert-Validation $instance @{
+		foreach ($object in $hashtable, $psObject) {
+			$errors = Assert-Validation $object @{
 				FirstName = (New-ValidatorNotEmpty "The first name is required."), (New-ValidatorLike "C*" "The first name must start with the letter C.")
 				Gender = (New-ValidatorNotEmpty "The gender is empty."), (New-ValidatorEqual "Female" "Only women are allowed.")
 				LastName = New-ValidatorNotEmpty "The last name is required."
