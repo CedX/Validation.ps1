@@ -14,7 +14,7 @@ function Test-Validation {
 	param (
 		# The object to validate.
 		[Parameter(Mandatory, Position = 1, ValueFromPipeline)]
-		[object] $Object,
+		[object] $InputObject,
 
 		# The set of validation rules to apply.
 		[Parameter(Mandatory, Position = 2)]
@@ -25,7 +25,7 @@ function Test-Validation {
 		foreach ($property in $RuleSet.Keys) {
 			foreach ($rule in @($RuleSet[$property])) {
 				$validator = [Validator] $rule
-				if (-not $validator.IsValid($Object.$property)) { return $false }
+				if (-not $validator.IsValid($InputObject.$property)) { return $false }
 			}
 		}
 
