@@ -1,4 +1,6 @@
-﻿<#
+﻿using namespace Belin.Validation
+
+<#
 .SYNOPSIS
 	Creates a new validator that ensures the validated value exists in a specified enumeration.
 .OUTPUTS
@@ -6,7 +8,7 @@
 #>
 function New-ValidatorEnum {
 	[CmdletBinding()]
-	[OutputType([Belin.Validation.Validator])]
+	[OutputType([Belin.Validation.ComparisonValidator])]
 	param (
 		# An enumeration type.
 		[Parameter(Mandatory, Position = 1)]
@@ -17,5 +19,9 @@ function New-ValidatorEnum {
 		[string] $Reason
 	)
 
-	New-Validator $Reason { [Enum]::IsDefined($Type, $_) }
+	[ComparisonValidator]@{
+		Reason = $Reason
+		Test = { [Enum]::IsDefined($this.Value, $_) }
+		Value = $Type
+	}
 }
