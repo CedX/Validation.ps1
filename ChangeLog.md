@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.6.1](https://github.com/CedX/Validation.ps1/compare/v0.6.0...v0.6.1)
+- Optimized the packaging.
+
 ## Version [0.6.0](https://github.com/CedX/Validation.ps1/compare/v0.5.0...v0.6.0)
 - Added the `New-ValidatorEnum` cmdlet.
 
