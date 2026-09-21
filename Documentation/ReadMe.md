@@ -5,7 +5,7 @@ A simple yet effective validation engine specifically designed for [PowerShell](
 Install the latest version of **Validation for PowerShell**
 with [PSResourceGet](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.psresourceget) package manager:
 
-```shell
+```powershell
 Install-PSResource Belin.Validation
 ```
 
