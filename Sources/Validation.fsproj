@@ -32,6 +32,7 @@
 		<Compile Include="Validators/CreditCard.fs" />
 		<Compile Include="Validators/Email.fs" />
 		<Compile Include="Validators/Enum.fs" />
+		<Compile Include="Validators/Null.fs" />
 		<Compile Include="Validators/Range.fs" />
 		<Compile Include="Validators/Uri.fs" />
 	</ItemGroup>

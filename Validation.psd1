@@ -24,6 +24,8 @@
 		"New-ValidatorUri"
 		"New-ValidatorRange"
 		"New-ValidatorCreditCard"
+		"New-ValidatorNotNull"
+		"New-ValidatorNull"
 	)
 
 	FunctionsToExport = @(
@@ -45,8 +47,6 @@
 		"New-ValidatorNotIn"
 		"New-ValidatorNotLike"
 		"New-ValidatorNotMatch"
-		"New-ValidatorNotNull"
-		"New-ValidatorNull"
 		"Test-Validation"
 	)
 
