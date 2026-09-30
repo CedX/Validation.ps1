@@ -17,17 +17,19 @@
 		"New-Validator"
 		"New-ValidatorBase64"
 		"New-ValidatorCount"
+		"New-ValidatorCreditCard"
 		"New-ValidatorEmail"
 		"New-ValidatorEnum"
+		"New-ValidatorLike"
+		"New-ValidatorMatch"
 		"New-ValidatorMaxCount"
 		"New-ValidatorMinCount"
-		"New-ValidatorUri"
-		"New-ValidatorRange"
-		"New-ValidatorCreditCard"
+		"New-ValidatorNotLike"
+		"New-ValidatorNotMatch"
 		"New-ValidatorNotNull"
 		"New-ValidatorNull"
-		"New-ValidatorMatch"
-		"New-ValidatorNotMatch"
+		"New-ValidatorRange"
+		"New-ValidatorUri"
 	)
 
 	FunctionsToExport = @(
@@ -40,13 +42,11 @@
 		"New-ValidatorLength"
 		"New-ValidatorLessThan"
 		"New-ValidatorLessThanOrEqual"
-		"New-ValidatorLike"
 		"New-ValidatorMaxLength"
 		"New-ValidatorMinLength"
 		"New-ValidatorNotEmpty"
 		"New-ValidatorNotEqual"
 		"New-ValidatorNotIn"
-		"New-ValidatorNotLike"
 		"Test-Validation"
 	)
 
