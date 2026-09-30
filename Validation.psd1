@@ -2,7 +2,6 @@
 	ModuleVersion = "0.7.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Binaries/Belin.Validation.dll"
-	NestedModules = , "Sources/Main.psm1"
 
 	Author = "Cédric Belin <cedx@outlook.com>"
 	CompanyName = "Cedric-Belin.fr"
@@ -11,9 +10,11 @@
 	GUID = "9c428994-d95d-48c8-af60-8b5db25e22b4"
 
 	AliasesToExport = @()
+	FunctionsToExport = @()
 	VariablesToExport = @()
 
 	CmdletsToExport = @(
+		"Assert-Validation"
 		"New-Validator"
 		"New-ValidatorBase64"
 		"New-ValidatorCount"
@@ -43,10 +44,6 @@
 		"New-ValidatorNull"
 		"New-ValidatorRange"
 		"New-ValidatorUri"
-	)
-
-	FunctionsToExport = @(
-		"Assert-Validation"
 		"Test-Validation"
 	)
 
