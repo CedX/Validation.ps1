@@ -18,6 +18,7 @@
 		"New-ValidatorBase64"
 		"New-ValidatorCount"
 		"New-ValidatorEmail"
+		"New-ValidatorEnum"
 		"New-ValidatorMaxCount"
 		"New-ValidatorMinCount"
 	)
@@ -26,7 +27,6 @@
 		"Assert-Validation"
 		"New-ValidatorCreditCard"
 		"New-ValidatorEmpty"
-		"New-ValidatorEnum"
 		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"
 		"New-ValidatorGreaterThanOrEqual"
