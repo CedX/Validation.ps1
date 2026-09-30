@@ -32,11 +32,12 @@
 		"New-ValidatorUri"
 		"New-ValidatorEmpty"
 		"New-ValidatorNotEmpty"
+		"New-ValidatorEqual"
+		"New-ValidatorNotEqual"
 	)
 
 	FunctionsToExport = @(
 		"Assert-Validation"
-		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"
 		"New-ValidatorGreaterThanOrEqual"
 		"New-ValidatorIn"
@@ -45,7 +46,6 @@
 		"New-ValidatorLessThanOrEqual"
 		"New-ValidatorMaxLength"
 		"New-ValidatorMinLength"
-		"New-ValidatorNotEqual"
 		"New-ValidatorNotIn"
 		"Test-Validation"
 	)
