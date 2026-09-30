@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.7.0](https://github.com/CedX/Validation.ps1/compare/v0.6.1...v0.7.0)
+- Ported most cmdlets to [F#](https://learn.microsoft.com/en-us/dotnet/fsharp).
+
 ## Version [0.6.1](https://github.com/CedX/Validation.ps1/compare/v0.6.0...v0.6.1)
 - Optimized the packaging.
 
