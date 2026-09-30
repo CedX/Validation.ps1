@@ -22,6 +22,7 @@
 		"New-ValidatorMaxCount"
 		"New-ValidatorMinCount"
 		"New-ValidatorUri"
+		"New-ValidatorRange"
 	)
 
 	FunctionsToExport = @(
@@ -46,7 +47,6 @@
 		"New-ValidatorNotMatch"
 		"New-ValidatorNotNull"
 		"New-ValidatorNull"
-		"New-ValidatorRange"
 		"Test-Validation"
 	)
 
