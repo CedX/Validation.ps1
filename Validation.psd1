@@ -17,6 +17,7 @@
 		"New-Validator"
 		"New-ValidatorBase64"
 		"New-ValidatorCount"
+		"New-ValidatorEmail"
 		"New-ValidatorMaxCount"
 		"New-ValidatorMinCount"
 	)
@@ -24,7 +25,6 @@
 	FunctionsToExport = @(
 		"Assert-Validation"
 		"New-ValidatorCreditCard"
-		"New-ValidatorEmail"
 		"New-ValidatorEmpty"
 		"New-ValidatorEnum"
 		"New-ValidatorEqual"
