@@ -38,14 +38,14 @@ type ComparisonValidator(value: obj|null, reason: string, test: ScriptBlock) =
   member val Value: obj|null = value
 
 /// A validator that ensures a value falls within a specified range.
-type RangeValidator(lowerBound: obj, upperBound: obj, reason: string, test: ScriptBlock) =
+type RangeValidator(lowerBound: IComparable, upperBound: IComparable, reason: string, test: ScriptBlock) =
   inherit Validator(reason, test)
 
   /// The lower bound.
-  member val LowerBound: obj = lowerBound
+  member val LowerBound: IComparable = lowerBound
 
   /// The upper bound.
-  member val UpperBound: obj = upperBound
+  member val UpperBound: IComparable = upperBound
 
 /// Creates a new validator.
 [<Cmdlet(VerbsCommon.New, "Validator")>]
