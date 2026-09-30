@@ -30,5 +30,6 @@
 		<Compile Include="Validators/Base64.fs" />
 		<Compile Include="Validators/Count.fs" />
 		<Compile Include="Validators/Email.fs" />
+		<Compile Include="Validators/Enum.fs" />
 	</ItemGroup>
 </Project>
