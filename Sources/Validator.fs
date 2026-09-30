@@ -31,14 +31,14 @@ type Validator(reason: string, test: ScriptBlock) =
     Validator(reason, test)
 
 /// A validator that compares a value to another reference value.
-type ComparisonValidator(reason: string, value: obj|null, test: ScriptBlock) =
+type ComparisonValidator(value: obj|null, reason: string, test: ScriptBlock) =
   inherit Validator(reason, test)
 
   /// The comparison value.
   member val Value: obj|null = value
 
 /// A validator that ensures a value falls within a specified range.
-type RangeValidator(reason: string, lowerBound: obj, upperBound: obj, test: ScriptBlock) =
+type RangeValidator(lowerBound: obj, upperBound: obj, reason: string, test: ScriptBlock) =
   inherit Validator(reason, test)
 
   /// The lower bound.
