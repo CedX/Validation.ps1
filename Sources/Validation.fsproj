@@ -35,6 +35,7 @@
 		<Compile Include="Validators/Enum.fs" />
 		<Compile Include="Validators/Equal.fs" />
 		<Compile Include="Validators/GreaterThan.fs" />
+		<Compile Include="Validators/Length.fs" />
 		<Compile Include="Validators/LessThan.fs" />
 		<Compile Include="Validators/Like.fs" />
 		<Compile Include="Validators/Match.fs" />

@@ -38,14 +38,14 @@
 		"New-ValidatorNull"
 		"New-ValidatorRange"
 		"New-ValidatorUri"
+		"New-ValidatorLength"
+		"New-ValidatorMaxLength"
+		"New-ValidatorMinLength"
 	)
 
 	FunctionsToExport = @(
 		"Assert-Validation"
 		"New-ValidatorIn"
-		"New-ValidatorLength"
-		"New-ValidatorMaxLength"
-		"New-ValidatorMinLength"
 		"New-ValidatorNotIn"
 		"Test-Validation"
 	)
