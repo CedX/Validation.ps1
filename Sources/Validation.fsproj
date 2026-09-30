@@ -28,5 +28,6 @@
 	<ItemGroup>
 		<Compile Include="Validator.fs" />
 		<Compile Include="Validators/Base64.fs" />
+		<Compile Include="Validators/Count.fs" />
 	</ItemGroup>
 </Project>

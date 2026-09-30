@@ -16,11 +16,13 @@
 	CmdletsToExport = @(
 		"New-Validator"
 		"New-ValidatorBase64"
+		"New-ValidatorCount"
+		"New-ValidatorMaxCount"
+		"New-ValidatorMinCount"
 	)
 
 	FunctionsToExport = @(
 		"Assert-Validation"
-		"New-ValidatorCount"
 		"New-ValidatorCreditCard"
 		"New-ValidatorEmail"
 		"New-ValidatorEmpty"
@@ -34,9 +36,7 @@
 		"New-ValidatorLessThanOrEqual"
 		"New-ValidatorLike"
 		"New-ValidatorMatch"
-		"New-ValidatorMaxCount"
 		"New-ValidatorMaxLength"
-		"New-ValidatorMinCount"
 		"New-ValidatorMinLength"
 		"New-ValidatorNotEmpty"
 		"New-ValidatorNotEqual"
