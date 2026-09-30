@@ -10,6 +10,14 @@ open System.Management.Automation
 type NewValidatorRangeCommand() =
   inherit Cmdlet()
 
+  /// The script block used to perform the validation.
+  static let exclusiveScriptBlock =
+    ScriptBlock.Create "($_ -gt $this.LowerBound) -and ($_ -lt $this.UpperBound)"
+
+  /// The script block used to perform the validation.
+  static let inclusiveScriptBlock =
+    ScriptBlock.Create "($_ -ge $this.LowerBound) -and ($_ -le $this.UpperBound)"
+
   /// The minimum value of the range allowed.
   [<Parameter(Mandatory = true, Position = 1)>]
   member val From: IComparable = 0 with get, set
@@ -29,9 +37,5 @@ type NewValidatorRangeCommand() =
   /// Performs execution of this command.
   override this.ProcessRecord() =
     if this.To < this.From then invalidArg (nameof this.To) "The maximum value is less than the minimum value."
-
-    let scriptBlock =
-      if this.Exclusive.IsPresent then "($_ -gt $this.LowerBound) -and ($_ -lt $this.UpperBound)"
-      else "($_ -ge $this.LowerBound) -and ($_ -le $this.UpperBound)"
-
-    this.WriteObject (RangeValidator(this.From, this.To, this.Reason, ScriptBlock.Create scriptBlock))
+    let scriptBlock = if this.Exclusive.IsPresent then exclusiveScriptBlock else inclusiveScriptBlock
+    this.WriteObject (RangeValidator(this.From, this.To, this.Reason, scriptBlock))

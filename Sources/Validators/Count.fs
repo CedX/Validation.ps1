@@ -9,6 +9,10 @@ open System.Management.Automation
 type NewValidatorCountCommand() =
   inherit Cmdlet()
 
+  /// The script block used to perform the validation.
+  static let scriptBlock =
+    ScriptBlock.Create "($_.Count -ge $this.LowerBound) -and ($_.Count -le $this.UpperBound)"
+
   /// The minimum required length.
   [<Parameter(Mandatory = true, Position = 1); ValidateRange(ValidateRangeKind.NonNegative)>]
   member val Min = 0 with get, set
@@ -24,14 +28,17 @@ type NewValidatorCountCommand() =
   /// Performs execution of this command.
   override this.ProcessRecord() =
     if this.Max < this.Min then invalidArg (nameof this.Max) "The maximum length is less than the minimum length."
-    let scriptBlock = "($_.Count -ge $this.LowerBound) -and ($_.Count -le $this.UpperBound)"
-    this.WriteObject (RangeValidator(this.Min, this.Max, this.Reason, ScriptBlock.Create scriptBlock))
+    this.WriteObject (RangeValidator(this.Min, this.Max, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value has a maximum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMaxCount")>]
 [<OutputType(typeof<Validator>)>]
 type NewValidatorMaxCountCommand() =
   inherit Cmdlet()
+
+  /// The script block used to perform the validation.
+  static let scriptBlock =
+    ScriptBlock.Create "$_.Count -le $this.Value"
 
   /// The maximum required length.
   [<Parameter(Mandatory = true, Position = 1); ValidateRange(ValidateRangeKind.NonNegative)>]
@@ -43,14 +50,17 @@ type NewValidatorMaxCountCommand() =
 
   /// Performs execution of this command.
   override this.ProcessRecord() =
-    let scriptBlock = "$_.Count -le $this.Value"
-    this.WriteObject (ComparisonValidator(this.Value, this.Reason, ScriptBlock.Create scriptBlock))
+    this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value has a minimum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMinCount")>]
 [<OutputType(typeof<Validator>)>]
 type NewValidatorMinCountCommand() =
   inherit Cmdlet()
+
+  /// The script block used to perform the validation.
+  static let scriptBlock =
+    ScriptBlock.Create "$_.Count -ge $this.Value"
 
   /// The minimum required length.
   [<Parameter(Mandatory = true, Position = 1); ValidateRange(ValidateRangeKind.NonNegative)>]
@@ -62,5 +72,4 @@ type NewValidatorMinCountCommand() =
 
   /// Performs execution of this command.
   override this.ProcessRecord() =
-    let scriptBlock = "$_.Count -ge $this.Value"
-    this.WriteObject (ComparisonValidator(this.Value, this.Reason, ScriptBlock.Create scriptBlock))
+    this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))
