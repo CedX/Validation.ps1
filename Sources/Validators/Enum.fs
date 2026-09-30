@@ -1,7 +1,6 @@
 namespace Belin.Validation.Validators
 
 open Belin.Validation
-open System
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value exists in a specified enumeration.
