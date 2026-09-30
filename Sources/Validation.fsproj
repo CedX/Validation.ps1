@@ -31,6 +31,7 @@
 		<Compile Include="Validators/Count.fs" />
 		<Compile Include="Validators/CreditCard.fs" />
 		<Compile Include="Validators/Email.fs" />
+		<Compile Include="Validators/Empty.fs" />
 		<Compile Include="Validators/Enum.fs" />
 		<Compile Include="Validators/Like.fs" />
 		<Compile Include="Validators/Match.fs" />
