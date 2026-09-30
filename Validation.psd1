@@ -26,6 +26,8 @@
 		"New-ValidatorCreditCard"
 		"New-ValidatorNotNull"
 		"New-ValidatorNull"
+		"New-ValidatorMatch"
+		"New-ValidatorNotMatch"
 	)
 
 	FunctionsToExport = @(
@@ -39,14 +41,12 @@
 		"New-ValidatorLessThan"
 		"New-ValidatorLessThanOrEqual"
 		"New-ValidatorLike"
-		"New-ValidatorMatch"
 		"New-ValidatorMaxLength"
 		"New-ValidatorMinLength"
 		"New-ValidatorNotEmpty"
 		"New-ValidatorNotEqual"
 		"New-ValidatorNotIn"
 		"New-ValidatorNotLike"
-		"New-ValidatorNotMatch"
 		"Test-Validation"
 	)
 
