@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value matches an element from a set of possible values.
 [<Cmdlet(VerbsCommon.New, "ValidatorIn")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorInCommand() =
-  inherit Cmdlet()
+type NewValidatorInCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -iin $this.Value"
@@ -17,7 +17,7 @@ type NewValidatorInCommand() =
 
   /// The set of possible values.
   [<Parameter(Mandatory = true, Position = 1)>]
-  member val Values: (obj|null) array = [||] with get, set
+  member val Values: (obj | null) array = [||] with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]
@@ -28,15 +28,15 @@ type NewValidatorInCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Values, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Values, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value does not match an element from a set of possible values.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotIn")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotInCommand() =
-  inherit Cmdlet()
+type NewValidatorNotInCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -inotin $this.Value"
@@ -46,7 +46,7 @@ type NewValidatorNotInCommand() =
 
   /// The set of possible values.
   [<Parameter(Mandatory = true, Position = 1)>]
-  member val Values: (obj|null) array = [||] with get, set
+  member val Values: (obj | null) array = [||] with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]
@@ -57,6 +57,6 @@ type NewValidatorNotInCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Values, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Values, this.Reason, scriptBlock))

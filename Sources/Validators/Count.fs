@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures a collection length falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorCount")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorCountCommand() =
-  inherit Cmdlet()
+type NewValidatorCountCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "($_.Count -ge $this.LowerBound) -and ($_.Count -le $this.UpperBound)"
@@ -25,15 +25,15 @@ type NewValidatorCountCommand() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     if this.Max < this.Min then invalidArg (nameof this.Max) "The maximum length is less than the minimum length."
-    this.WriteObject (RangeValidator(this.Min, this.Max, this.Reason, scriptBlock))
+    this.WriteObject (RangeValidator (this.Min, this.Max, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value has a maximum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMaxCount")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorMaxCountCommand() =
-  inherit Cmdlet()
+type NewValidatorMaxCountCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "$_.Count -le $this.Value"
@@ -47,13 +47,13 @@ type NewValidatorMaxCountCommand() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() = this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))
+  override this.ProcessRecord () = this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value has a minimum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMinCount")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorMinCountCommand() =
-  inherit Cmdlet()
+type NewValidatorMinCountCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "$_.Count -ge $this.Value"
@@ -67,4 +67,4 @@ type NewValidatorMinCountCommand() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() = this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))
+  override this.ProcessRecord () = this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))

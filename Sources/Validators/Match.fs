@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value matches a given regex pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorMatch")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorMatchCommand() =
-  inherit Cmdlet()
+type NewValidatorMatchCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -imatch $this.Value"
@@ -28,15 +28,15 @@ type NewValidatorMatchCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Pattern, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Pattern, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value does not match a given regex pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotMatch")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotMatchCommand() =
-  inherit Cmdlet()
+type NewValidatorNotMatchCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -inotmatch $this.Value"
@@ -57,6 +57,6 @@ type NewValidatorNotMatchCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Pattern, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Pattern, this.Reason, scriptBlock))

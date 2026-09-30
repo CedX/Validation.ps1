@@ -7,8 +7,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures a number falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorRange")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorRangeCommand() =
-  inherit Cmdlet()
+type NewValidatorRangeCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let exclusiveScriptBlock = ScriptBlock.Create "($_ -gt $this.LowerBound) -and ($_ -lt $this.UpperBound)"
@@ -33,7 +33,7 @@ type NewValidatorRangeCommand() =
   member val Exclusive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     if this.To < this.From then invalidArg (nameof this.To) "The maximum value is less than the minimum value."
     let scriptBlock = if this.Exclusive.IsPresent then exclusiveScriptBlock else inclusiveScriptBlock
-    this.WriteObject (RangeValidator(this.From, this.To, this.Reason, scriptBlock))
+    this.WriteObject (RangeValidator (this.From, this.To, this.Reason, scriptBlock))

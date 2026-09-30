@@ -7,7 +7,7 @@ open System.Globalization
 open System.Management.Automation
 
 /// A generic validator.
-type Validator(reason: string, test: ScriptBlock) =
+type Validator (reason: string, test: ScriptBlock) =
 
   /// The error message describing the validation failure.
   member val Reason = reason with get, set
@@ -16,7 +16,7 @@ type Validator(reason: string, test: ScriptBlock) =
   member val Test: ScriptBlock = test
 
   /// Returns a value indicating whether the specified value is valid according to this validator.
-  member this.IsValid(value: obj|null) =
+  member this.IsValid (value: obj | null) =
     let variables = List<PSVariable> 2
     variables.Add(PSVariable("this", this))
     variables.Add(PSVariable("_", value))
@@ -28,18 +28,18 @@ type Validator(reason: string, test: ScriptBlock) =
   static member OfHashtable (hashtable: Hashtable) =
     let reason = match hashtable["Reason"] with :? string as value -> value | _ -> invalidArg (nameof hashtable) "The error message is missing or invalid."
     let test = match hashtable["Test"] with :? ScriptBlock as value -> value | _ -> invalidArg (nameof hashtable) "The script block is missing or invalid."
-    Validator(reason, test)
+    Validator (reason, test)
 
 /// A validator that compares a value to another reference value.
-type ComparisonValidator(value: obj|null, reason: string, test: ScriptBlock) =
-  inherit Validator(reason, test)
+type ComparisonValidator (value: obj | null, reason: string, test: ScriptBlock) =
+  inherit Validator (reason, test)
 
   /// The comparison value.
-  member val Value: obj|null = value
+  member val Value: obj | null = value
 
 /// A validator that ensures a value falls within a specified range.
-type RangeValidator(lowerBound: IComparable, upperBound: IComparable, reason: string, test: ScriptBlock) =
-  inherit Validator(reason, test)
+type RangeValidator (lowerBound: IComparable, upperBound: IComparable, reason: string, test: ScriptBlock) =
+  inherit Validator (reason, test)
 
   /// The lower bound.
   member val LowerBound: IComparable = lowerBound
@@ -50,8 +50,8 @@ type RangeValidator(lowerBound: IComparable, upperBound: IComparable, reason: st
 /// Creates a new validator.
 [<Cmdlet(VerbsCommon.New, "Validator")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorCommand() =
-  inherit Cmdlet()
+type NewValidatorCommand () =
+  inherit Cmdlet ()
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 1)>]
@@ -62,4 +62,4 @@ type NewValidatorCommand() =
   member val Test = ScriptBlock.Create "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, this.Test))
+  override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, this.Test))

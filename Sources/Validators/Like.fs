@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value matches a given wildcard pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorLike")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorLikeCommand() =
-  inherit Cmdlet()
+type NewValidatorLikeCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -ilike $this.Value"
@@ -28,15 +28,15 @@ type NewValidatorLikeCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Pattern, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Pattern, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value does not match a given wildcard pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotLike")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotLikeCommand() =
-  inherit Cmdlet()
+type NewValidatorNotLikeCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -inotlike $this.Value"
@@ -57,6 +57,6 @@ type NewValidatorNotLikeCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Pattern, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Pattern, this.Reason, scriptBlock))

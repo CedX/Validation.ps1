@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is empty.
 [<Cmdlet(VerbsCommon.New, "ValidatorEmpty")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorEmptyCommand() =
-  inherit Cmdlet()
+type NewValidatorEmptyCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let scriptBlock =
@@ -23,13 +23,13 @@ type NewValidatorEmptyCommand() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, scriptBlock))
+  override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value is not empty.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotEmpty")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotEmptyCommand() =
-  inherit Cmdlet()
+type NewValidatorNotEmptyCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let scriptBlock =
@@ -45,4 +45,4 @@ type NewValidatorNotEmptyCommand() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, scriptBlock))
+  override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, scriptBlock))

@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is less than a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorLessThan")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorLessThanCommand() =
-  inherit Cmdlet()
+type NewValidatorLessThanCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -ilt $this.Value"
@@ -17,7 +17,7 @@ type NewValidatorLessThanCommand() =
 
   /// The value to compare.
   [<Parameter(Mandatory = true, Position = 1); AllowEmptyString; AllowNull>]
-  member val Value: obj|null = null with get, set
+  member val Value: obj | null = null with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]
@@ -28,15 +28,15 @@ type NewValidatorLessThanCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value is less than or equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorLessThanOrEqual")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorLessThanOrEqualCommand() =
-  inherit Cmdlet()
+type NewValidatorLessThanOrEqualCommand () =
+  inherit Cmdlet ()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -cle $this.Value"
@@ -46,7 +46,7 @@ type NewValidatorLessThanOrEqualCommand() =
 
   /// The value to compare.
   [<Parameter(Mandatory = true, Position = 1); AllowEmptyString; AllowNull>]
-  member val Value: obj|null = null with get, set
+  member val Value: obj | null = null with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]
@@ -57,6 +57,6 @@ type NewValidatorLessThanOrEqualCommand() =
   member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let scriptBlock = if this.CaseSensitive.IsPresent then sensitiveScriptBlock else insensitiveScriptBlock
-    this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))
+    this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))

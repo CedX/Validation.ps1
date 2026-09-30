@@ -8,7 +8,7 @@ open System.Management.Automation
 module private Validation =
 
   /// Gets the value of the specified property of a given object.
-  let getValue (input: obj) (property: string): obj|null =
+  let getValue (input: obj) (property: string): obj | null =
     let inputType = input.GetType()
     match input with
     | :? IDictionary as dictionary -> dictionary[property]
@@ -17,7 +17,7 @@ module private Validation =
 
   /// Ensures that the specified value is an array.
   /// The result is always an array of zero or more objects.
-  let toArray (input: obj|null): obj array =
+  let toArray (input: obj | null): obj array =
     match input with
     | null -> [||]
     | :? (obj array) as objectArray -> objectArray
@@ -35,8 +35,8 @@ module private Validation =
 /// Returns the validation errors, if any.
 [<Cmdlet(VerbsLifecycle.Assert, "Validation")>]
 [<OutputType(typeof<Hashtable>)>]
-type AssertValidationCommand() =
-  inherit Cmdlet()
+type AssertValidationCommand () =
+  inherit Cmdlet ()
 
   /// The object to validate.
   [<Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)>]
@@ -47,7 +47,7 @@ type AssertValidationCommand() =
   member val RuleSet = Hashtable() with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let errors = Hashtable()
 
     for key in this.RuleSet.Keys do
@@ -70,8 +70,8 @@ type AssertValidationCommand() =
 /// Returns `true` if the validated object is valid, otherwise `false`.
 [<Cmdlet(VerbsDiagnostic.Test, "Validation")>]
 [<OutputType(typeof<bool>)>]
-type TestValidationCommand() =
-  inherit Cmdlet()
+type TestValidationCommand () =
+  inherit Cmdlet ()
 
   /// The object to validate.
   [<Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)>]
@@ -82,7 +82,7 @@ type TestValidationCommand() =
   member val RuleSet = Hashtable() with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
+  override this.ProcessRecord () =
     let mutable isValid = true
 
     let mutable keyIndex = 0
