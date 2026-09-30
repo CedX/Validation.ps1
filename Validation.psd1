@@ -23,11 +23,11 @@
 		"New-ValidatorMinCount"
 		"New-ValidatorUri"
 		"New-ValidatorRange"
+		"New-ValidatorCreditCard"
 	)
 
 	FunctionsToExport = @(
 		"Assert-Validation"
-		"New-ValidatorCreditCard"
 		"New-ValidatorEmpty"
 		"New-ValidatorEqual"
 		"New-ValidatorGreaterThan"
