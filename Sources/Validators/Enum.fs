@@ -10,8 +10,7 @@ type NewValidatorEnumCommand() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
-  static let scriptBlock =
-    ScriptBlock.Create "[Enum]::IsDefined($this.Value, $_)"
+  static let scriptBlock = ScriptBlock.Create "[Enum]::IsDefined($this.Value, $_)"
 
   /// An enumeration type.
   [<Parameter(Mandatory = true, Position = 1)>]
@@ -22,5 +21,4 @@ type NewValidatorEnumCommand() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
-    this.WriteObject (ComparisonValidator(this.Type, this.Reason, scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (ComparisonValidator(this.Type, this.Reason, scriptBlock))

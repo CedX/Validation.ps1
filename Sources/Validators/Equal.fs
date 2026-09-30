@@ -10,12 +10,10 @@ type NewValidatorEqualCommand() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
-  static let insensitiveScriptBlock =
-    ScriptBlock.Create "$_ -ieq $this.Value"
+  static let insensitiveScriptBlock = ScriptBlock.Create "$_ -ieq $this.Value"
 
   /// The script block used to perform the validation.
-  static let sensitiveScriptBlock =
-    ScriptBlock.Create "$_ -ceq $this.Value"
+  static let sensitiveScriptBlock = ScriptBlock.Create "$_ -ceq $this.Value"
 
   /// The value to compare.
   [<Parameter(Mandatory = true, Position = 1); AllowEmptyString; AllowNull>]
@@ -27,7 +25,7 @@ type NewValidatorEqualCommand() =
 
   /// Value indicating whether to perform a case-sensitive comparison.
   [<Parameter>]
-  member val CaseSensitive = SwitchParameter(isPresent = false) with get, set
+  member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
   override this.ProcessRecord() =
@@ -41,12 +39,10 @@ type NewValidatorNotEqualCommand() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
-  static let insensitiveScriptBlock =
-    ScriptBlock.Create "$_ -ine $this.Value"
+  static let insensitiveScriptBlock = ScriptBlock.Create "$_ -ine $this.Value"
 
   /// The script block used to perform the validation.
-  static let sensitiveScriptBlock =
-    ScriptBlock.Create "$_ -cne $this.Value"
+  static let sensitiveScriptBlock = ScriptBlock.Create "$_ -cne $this.Value"
 
   /// The value to compare.
   [<Parameter(Mandatory = true, Position = 1); AllowEmptyString; AllowNull>]
@@ -58,7 +54,7 @@ type NewValidatorNotEqualCommand() =
 
   /// Value indicating whether to perform a case-sensitive comparison.
   [<Parameter>]
-  member val CaseSensitive = SwitchParameter(isPresent = false) with get, set
+  member val CaseSensitive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
   override this.ProcessRecord() =

@@ -4,19 +4,17 @@ open Belin.Validation
 open System
 open System.Management.Automation
 
-/// Creates a new validator that ensures the validated value is a well-formed absolute URI.
+/// Creates a new validator that ensures a number falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorRange")>]
 [<OutputType(typeof<Validator>)>]
 type NewValidatorRangeCommand() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
-  static let exclusiveScriptBlock =
-    ScriptBlock.Create "($_ -gt $this.LowerBound) -and ($_ -lt $this.UpperBound)"
+  static let exclusiveScriptBlock = ScriptBlock.Create "($_ -gt $this.LowerBound) -and ($_ -lt $this.UpperBound)"
 
   /// The script block used to perform the validation.
-  static let inclusiveScriptBlock =
-    ScriptBlock.Create "($_ -ge $this.LowerBound) -and ($_ -le $this.UpperBound)"
+  static let inclusiveScriptBlock = ScriptBlock.Create "($_ -ge $this.LowerBound) -and ($_ -le $this.UpperBound)"
 
   /// The minimum value of the range allowed.
   [<Parameter(Mandatory = true, Position = 1)>]
@@ -32,7 +30,7 @@ type NewValidatorRangeCommand() =
 
   /// Value indicating whether the specified range is exclusive.
   [<Parameter>]
-  member val Exclusive = SwitchParameter(isPresent = false) with get, set
+  member val Exclusive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
   override this.ProcessRecord() =
