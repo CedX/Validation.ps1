@@ -46,3 +46,20 @@ type RangeValidator(reason: string, lowerBound: obj, upperBound: obj, test: Scri
 
   /// The upper bound.
   member val UpperBound: obj = upperBound
+
+/// Creates a new validator.
+[<Cmdlet(VerbsCommon.New, "Validator")>]
+[<OutputType(typeof<Validator>)>]
+type NewValidatorCommand() =
+  inherit Cmdlet()
+
+  /// The error message describing the validation failure.
+  [<Parameter(Mandatory = true, Position = 1)>]
+  member val Reason = "" with get, set
+
+  /// The script block used to perform the validation.
+  [<Parameter(Mandatory = true, Position = 2)>]
+  member val Test = ScriptBlock.Create "" with get, set
+
+  /// Performs execution of this command.
+  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, this.Test))

@@ -26,7 +26,7 @@ function Assert-Validation {
 
 		foreach ($property in $RuleSet.Keys) {
 			foreach ($rule in @($RuleSet[$property])) {
-				$validator = [Validator] $rule
+				$validator = [Validator]::OfHashtable($rule)
 				if (-not $validator.IsValid($InputObject.$property)) {
 					$errors[$property] = $validator.Reason
 					break
@@ -62,7 +62,7 @@ function Test-Validation {
 	process {
 		foreach ($property in $RuleSet.Keys) {
 			foreach ($rule in @($RuleSet[$property])) {
-				$validator = [Validator] $rule
+				$validator = [Validator]::OfHashtable($rule)
 				if (-not $validator.IsValid($InputObject.$property)) { return $false }
 			}
 		}
