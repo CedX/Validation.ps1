@@ -9,6 +9,10 @@ open System.Management.Automation
 type NewValidatorEnumCommand() =
   inherit Cmdlet()
 
+  /// The script block used to perform the validation.
+  static let scriptBlock =
+    ScriptBlock.Create "[Enum]::IsDefined($this.Value, $_)"
+
   /// An enumeration type.
   [<Parameter(Mandatory = true, Position = 1)>]
   member val Type = typeof<NewValidatorEnumCommand> with get, set
@@ -19,5 +23,4 @@ type NewValidatorEnumCommand() =
 
   /// Performs execution of this command.
   override this.ProcessRecord() =
-    let scriptBlock = "[Enum]::IsDefined($this.Value, $_)"
-    this.WriteObject (ComparisonValidator(this.Type, this.Reason, ScriptBlock.Create scriptBlock))
+    this.WriteObject (ComparisonValidator(this.Type, this.Reason, scriptBlock))

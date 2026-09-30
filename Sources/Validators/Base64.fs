@@ -9,6 +9,14 @@ open System.Management.Automation
 type NewValidatorBase64Command() =
   inherit Cmdlet()
 
+  /// The script block used to perform the validation.
+  static let base64ScriptBlock =
+    ScriptBlock.Create "($_ -is [string]) -and [System.Buffers.Text.Base64]::IsValid($_)"
+
+  /// The script block used to perform the validation.
+  static let base64UrlScriptBlock =
+    ScriptBlock.Create "($_ -is [string]) -and [System.Buffers.Text.Base64Url]::IsValid($_)"
+
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 1)>]
   member val Reason = "" with get, set
@@ -19,8 +27,5 @@ type NewValidatorBase64Command() =
 
   /// Performs execution of this command.
   override this.ProcessRecord() =
-    let scriptBlock =
-      if this.Url.IsPresent then "($_ -is [string]) -and [System.Buffers.Text.Base64Url]::IsValid($_)"
-      else "($_ -is [string]) -and [System.Buffers.Text.Base64]::IsValid($_)"
-
-    this.WriteObject (Validator(this.Reason, ScriptBlock.Create scriptBlock))
+    let scriptBlock = if this.Url.IsPresent then base64UrlScriptBlock else base64ScriptBlock
+    this.WriteObject (Validator(this.Reason, scriptBlock))
