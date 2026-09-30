@@ -9,6 +9,10 @@ open System.Management.Automation
 type NewValidatorUriCommand() =
   inherit Cmdlet()
 
+  /// The script block used to perform the validation.
+  static let scriptBlock =
+    ScriptBlock.Create "([uri]::IsWellFormedUriString($_, [UriKind]::Absolute)) -and ([uri]::new($_).Scheme -in $this.Value)"
+
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 1)>]
   member val Reason = "" with get, set
@@ -18,6 +22,4 @@ type NewValidatorUriCommand() =
   member val Scheme = [| "http"; "https" |] with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord() =
-    let scriptBlock = "([uri]::IsWellFormedUriString($_, [UriKind]::Absolute)) -and ([uri]::new($_).Scheme -in $this.Value)"
-    this.WriteObject (ComparisonValidator(this.Scheme, this.Reason, ScriptBlock.Create scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (ComparisonValidator(this.Scheme, this.Reason, scriptBlock))

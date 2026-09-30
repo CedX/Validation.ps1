@@ -10,12 +10,10 @@ type NewValidatorBase64Command() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
-  static let base64ScriptBlock =
-    ScriptBlock.Create "($_ -is [string]) -and [System.Buffers.Text.Base64]::IsValid($_)"
+  static let base64ScriptBlock = ScriptBlock.Create "($_ -is [string]) -and [System.Buffers.Text.Base64]::IsValid($_)"
 
   /// The script block used to perform the validation.
-  static let base64UrlScriptBlock =
-    ScriptBlock.Create "($_ -is [string]) -and [System.Buffers.Text.Base64Url]::IsValid($_)"
+  static let base64UrlScriptBlock = ScriptBlock.Create "($_ -is [string]) -and [System.Buffers.Text.Base64Url]::IsValid($_)"
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 1)>]
@@ -23,7 +21,7 @@ type NewValidatorBase64Command() =
 
   /// Value indicating whether the specified string uses a URL-safe alphabet.
   [<Parameter>]
-  member val Url = SwitchParameter(isPresent = false) with get, set
+  member val Url = SwitchParameter false with get, set
 
   /// Performs execution of this command.
   override this.ProcessRecord() =
