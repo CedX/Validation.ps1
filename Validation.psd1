@@ -1,7 +1,7 @@
 @{
 	ModuleVersion = "0.7.0"
 	PowerShellVersion = "7.6"
-	RootModule = "Sources/Main.psm1"
+	RootModule = "Binaries/Belin.Validation.dll"
 
 	Author = "Cédric Belin <cedx@outlook.com>"
 	CompanyName = "Cedric-Belin.fr"
@@ -10,13 +10,14 @@
 	GUID = "9c428994-d95d-48c8-af60-8b5db25e22b4"
 
 	AliasesToExport = @()
-	CmdletsToExport = @()
-	RequiredAssemblies = , "Binaries/Belin.Validation.dll"
 	VariablesToExport = @()
+
+	CmdletsToExport = @(
+		"New-Validator"
+	)
 
 	FunctionsToExport = @(
 		"Assert-Validation"
-		"New-Validator"
 		"New-ValidatorBase64"
 		"New-ValidatorCount"
 		"New-ValidatorCreditCard"
@@ -46,6 +47,14 @@
 		"New-ValidatorRange"
 		"New-ValidatorUri"
 		"Test-Validation"
+	)
+
+	NestedModules = @(
+		"Sources/Main.psm1"
+	)
+
+	RequiredModules = @(
+		@{ ModuleName = "Belin.FSharp"; ModuleVersion = "10.1.401" }
 	)
 
 	PrivateData = @{

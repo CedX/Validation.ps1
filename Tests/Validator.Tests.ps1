@@ -6,26 +6,6 @@ using module ../Validation.psd1
 	Tests the features of the `New-Validator` cmdlet.
 #>
 Describe "New-Validator" {
-	Context "ExplicitConversion" {
-		It "should create a validator from the specified hash table" {
-			$validator = [Belin.Validation.Validator] @{ Reason = "An error occurred."; Test = { $false } }
-			Should-BeString "An error occurred." $validator.Reason -CaseSensitive
-			Should-HaveType ([scriptblock]) $validator.Test
-		}
-
-		It "should throw an exception when the hash table does not provide the expected properties" -ForEach @(
-			@{ Reason = "An error occurred." }
-			@{ Test = { $false } }
-			@{ Reason = 123; Test = { $false } }
-			@{ Reason = "An error occurred."; Test = "false" }
-		) {
-			Should-Throw -ScriptBlock {
-				[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "validator")]
-				$validator = [Belin.Validation.Validator] $_
-			}
-		}
-	}
-
 	Context "IsValid" {
 		It "should return `$false if the validated value is invalid" -ForEach @(
 			@{ Value = $false; Test = { $_ } }
@@ -45,6 +25,26 @@ Describe "New-Validator" {
 		) {
 			$validator = New-Validator "Reason" $test
 			Should-BeTrue $validator.IsValid($value)
+		}
+	}
+
+	Context "OfHashtable" {
+		It "should create a validator from the specified hash table" {
+			$validator = [Belin.Validation.Validator]::OfHashtable(@{ Reason = "An error occurred."; Test = { $false } })
+			Should-BeString "An error occurred." $validator.Reason -CaseSensitive
+			Should-HaveType ([scriptblock]) $validator.Test
+		}
+
+		It "should throw an exception when the hash table does not provide the expected properties" -ForEach @(
+			@{ Reason = "An error occurred." }
+			@{ Test = { $false } }
+			@{ Reason = 123; Test = { $false } }
+			@{ Reason = "An error occurred."; Test = "false" }
+		) {
+			Should-Throw -ScriptBlock {
+				[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "validator")]
+				$validator = [Belin.Validation.Validator]::OfHashtable($_)
+			}
 		}
 	}
 
