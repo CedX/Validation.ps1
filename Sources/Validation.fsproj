@@ -16,11 +16,16 @@
 		<Nullable>enable</Nullable>
 		<OutDir>../Binaries</OutDir>
 		<RootNamespace>Belin.Validation</RootNamespace>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="$(RootNamespace).Tests" />
+		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
 		<PackageReference Include="System.Management.Automation" Version="7.6.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="Validator.fs" />
 	</ItemGroup>
 </Project>
