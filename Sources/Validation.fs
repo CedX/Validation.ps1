@@ -8,17 +8,17 @@ open System.Management.Automation
 module private Validation =
 
   /// Gets the value of the specified property of a given object.
-  let getValue (inputObject: obj) (property: string): obj|null =
-    let inputObjectType = inputObject.GetType()
-    match inputObject with
+  let getValue (input: obj) (property: string): obj|null =
+    let inputType = input.GetType()
+    match input with
     | :? IDictionary as dictionary -> dictionary[property]
     | :? PSObject as psObject -> match psObject.Properties[property] with null -> null | psPropertyInfo -> psPropertyInfo.Value
-    | _ -> match inputObjectType.GetProperty property with null -> null | propertyInfo -> propertyInfo.GetValue inputObject
+    | _ -> match inputType.GetProperty property with null -> null | propertyInfo -> propertyInfo.GetValue input
 
   /// Ensures that the specified value is an array.
   /// The result is always an array of zero or more objects.
-  let toArray (arrayOrElement: obj|null): obj array =
-    match arrayOrElement with
+  let toArray (input: obj|null): obj array =
+    match input with
     | null -> [||]
     | :? (obj array) as objectArray -> objectArray
     | :? (obj seq) as objectSequence -> Seq.toArray objectSequence
