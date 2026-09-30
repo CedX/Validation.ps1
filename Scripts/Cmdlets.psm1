@@ -17,10 +17,22 @@ function Build-DotNetSolution {
 
 <#
 .SYNOPSIS
-	Applies style preferences and static analysis recommendations to the .NET solution.
+	Invokes the FSharpLint static analyzer.
 #>
-function Format-DotNetSolution {
-	dotnet format
+function Invoke-FSharpLint {
+	param (
+		# The path to the file or directory to be analyzed.
+		[Parameter(Mandatory, Position = 1)]
+		[string[]] $Path,
+
+		# The path to the configuration file.
+		[ValidateScript({ Test-Path $_ -PathType Leaf }, ErrorMessage = "The specified configuration file does not exist.")]
+		[string] $Configuration
+	)
+
+	$argumentList = $Configuration ? "--lint-config", $Configuration : @()
+	$argumentList += $Path
+	dotnet fsharplint lint @argumentList
 }
 
 <#
