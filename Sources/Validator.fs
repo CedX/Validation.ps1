@@ -21,13 +21,13 @@ type Validator (reason: string, test: ScriptBlock) =
     variables.Add(PSVariable("this", this))
     variables.Add(PSVariable("_", value))
 
-    let output = Seq.last (this.Test.InvokeWithContext(null, variables))
-    Convert.ToBoolean(output.BaseObject, CultureInfo.InvariantCulture)
+    let output = Seq.last (this.Test.InvokeWithContext(functionsToDefine = null, variablesToDefine = variables))
+    Convert.ToBoolean (output.BaseObject, CultureInfo.InvariantCulture)
 
   /// Creates a new validator from the specified hash table.
   static member OfHashtable (hashtable: Hashtable) =
     let reason = match hashtable["Reason"] with :? string as value -> value | _ -> invalidArg (nameof hashtable) "The error message is missing or invalid."
-    let test = match hashtable["Test"] with :? ScriptBlock as value -> value | _ -> invalidArg (nameof hashtable) "The script block is missing or invalid."
+    let test = match hashtable["Test"] with :? ScriptBlock as scriptBlock -> scriptBlock | _ -> invalidArg (nameof hashtable) "The script block is missing or invalid."
     Validator (reason, test)
 
 /// A validator that compares a value to another reference value.
