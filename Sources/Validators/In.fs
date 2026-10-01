@@ -17,7 +17,7 @@ type NewValidatorInCommand () =
 
   /// The set of possible values.
   [<Parameter(Mandatory = true, Position = 1)>]
-  member val Values: (obj | null) array = [||] with get, set
+  member val Values: objnull array = [||] with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]
@@ -46,7 +46,7 @@ type NewValidatorNotInCommand () =
 
   /// The set of possible values.
   [<Parameter(Mandatory = true, Position = 1)>]
-  member val Values: (obj | null) array = [||] with get, set
+  member val Values: objnull array = [||] with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]

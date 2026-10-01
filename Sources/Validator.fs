@@ -16,7 +16,7 @@ type Validator (reason: string, test: ScriptBlock) =
   member val Test: ScriptBlock = test
 
   /// Returns a value indicating whether the specified value is valid according to this validator.
-  member this.IsValid (value: obj | null) =
+  member this.IsValid (value: objnull) =
     let variables = List<PSVariable> 2
     variables.Add(PSVariable("this", this))
     variables.Add(PSVariable("_", value))
@@ -31,11 +31,11 @@ type Validator (reason: string, test: ScriptBlock) =
     Validator (reason, test)
 
 /// A validator that compares a value to another reference value.
-type ComparisonValidator (value: obj | null, reason: string, test: ScriptBlock) =
+type ComparisonValidator (value: objnull, reason: string, test: ScriptBlock) =
   inherit Validator (reason, test)
 
   /// The comparison value.
-  member val Value: obj | null = value
+  member val Value: objnull = value
 
 /// A validator that ensures a value falls within a specified range.
 type RangeValidator (lowerBound: IComparable, upperBound: IComparable, reason: string, test: ScriptBlock) =

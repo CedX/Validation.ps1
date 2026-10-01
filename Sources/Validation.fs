@@ -8,7 +8,7 @@ open System.Management.Automation
 module private Validation =
 
   /// Gets the value of the specified property of a given object.
-  let getValue (input: obj) (property: string): obj | null =
+  let getValue (input: obj) (property: string): objnull =
     let inputType = input.GetType()
     match input with
     | :? IDictionary as dictionary -> dictionary[property]
@@ -17,7 +17,7 @@ module private Validation =
 
   /// Ensures that the specified value is an array.
   /// The result is always an array of zero or more objects.
-  let toArray (input: obj | null): obj array =
+  let toArray (input: objnull): obj array =
     match input with
     | null -> [||]
     | :? (obj array) as objectArray -> objectArray
@@ -84,7 +84,6 @@ type TestValidationCommand () =
   /// Performs execution of this command.
   override this.ProcessRecord () =
     let mutable isValid = true
-
     let mutable keyIndex = 0
     let keys = this.RuleSet.Keys |> Seq.cast<string> |> Array.ofSeq
 

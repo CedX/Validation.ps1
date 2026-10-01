@@ -17,7 +17,7 @@ type NewValidatorGreaterThanCommand () =
 
   /// The value to compare.
   [<Parameter(Mandatory = true, Position = 1); AllowEmptyString; AllowNull>]
-  member val Value: obj | null = null with get, set
+  member val Value: objnull = null with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]
@@ -46,7 +46,7 @@ type NewValidatorGreaterThanOrEqualCommand () =
 
   /// The value to compare.
   [<Parameter(Mandatory = true, Position = 1); AllowEmptyString; AllowNull>]
-  member val Value: obj | null = null with get, set
+  member val Value: objnull = null with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]
