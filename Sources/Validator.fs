@@ -10,13 +10,13 @@ open System.Management.Automation
 type Validator (reason: string, test: ScriptBlock) =
 
   /// The error message describing the validation failure.
-  member val Reason = reason with get, set
+  member val Reason: string = reason with get, set
 
   /// The script block used to perform the validation.
   member val Test: ScriptBlock = test
 
   /// Returns a value indicating whether the specified value is valid according to this validator.
-  member this.IsValid (value: objnull) =
+  member this.IsValid (value: objnull): bool =
     let variables = List<PSVariable> 2
     variables.Add(PSVariable("this", this))
     variables.Add(PSVariable("_", value))
@@ -26,8 +26,8 @@ type Validator (reason: string, test: ScriptBlock) =
 
   /// Creates a new validator from the specified hash table.
   static member OfHashtable (hashtable: Hashtable) =
-    let reason = match hashtable["Reason"] with :? string as value -> value | _ -> invalidArg (nameof hashtable) "The error message is missing or invalid."
-    let test = match hashtable["Test"] with :? ScriptBlock as scriptBlock -> scriptBlock | _ -> invalidArg (nameof hashtable) "The script block is missing or invalid."
+    let reason = match hashtable["Reason"] with :? string as value -> value | _ -> invalidArg (nameof hashtable) "Error message missing or invalid."
+    let test = match hashtable["Test"] with :? ScriptBlock as script -> script | _ -> invalidArg (nameof hashtable) "Script block missing or invalid."
     Validator (reason, test)
 
 /// A validator that compares a value to another reference value.

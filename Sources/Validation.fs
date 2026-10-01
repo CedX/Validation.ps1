@@ -9,11 +9,13 @@ module private Validation =
 
   /// Gets the value of the specified property of a given object.
   let getValue (input: obj) (property: string): objnull =
-    let inputType = input.GetType()
-    match input with
+    let baseObject = match input with :? PSObject as psObject -> psObject.BaseObject | value -> value
+    match baseObject with
     | :? IDictionary as dictionary -> dictionary[property]
-    | :? PSObject as psObject -> match psObject.Properties[property] with null -> null | psPropertyInfo -> psPropertyInfo.Value
-    | _ -> match inputType.GetProperty property with null -> null | propertyInfo -> propertyInfo.GetValue input
+    | _ ->
+      match input with
+      | :? PSObject as psObject -> match psObject.Properties[property] with null -> null | propertyInfo -> propertyInfo.Value
+      | _ -> match input.GetType().GetProperty property with null -> null | propertyInfo -> propertyInfo.GetValue input
 
   /// Ensures that the specified value is an array.
   /// The result is always an array of zero or more objects.
@@ -52,10 +54,9 @@ type AssertValidationCommand () =
 
     for key in this.RuleSet.Keys do
       let property = string key
-
-      let mutable ruleIndex = 0
       let rules = Validation.toArray this.RuleSet[property]
 
+      let mutable ruleIndex = 0
       while not (errors.ContainsKey property) && ruleIndex < rules.Length do
         let rule = match rules[ruleIndex] with :? PSObject as value -> value.BaseObject | value -> value
         ruleIndex <- ruleIndex + 1
@@ -84,16 +85,15 @@ type TestValidationCommand () =
   /// Performs execution of this command.
   override this.ProcessRecord () =
     let mutable isValid = true
-    let mutable keyIndex = 0
     let keys = this.RuleSet.Keys |> Seq.cast<string> |> Array.ofSeq
 
+    let mutable keyIndex = 0
     while isValid && keyIndex < keys.Length do
       let property = keys[keyIndex]
+      let rules = Validation.toArray this.RuleSet[property]
       keyIndex <- keyIndex + 1
 
       let mutable ruleIndex = 0
-      let rules = Validation.toArray this.RuleSet[property]
-
       while isValid && ruleIndex < rules.Length do
         let rule = match rules[ruleIndex] with :? PSObject as psObject -> psObject.BaseObject | value -> value
         ruleIndex <- ruleIndex + 1

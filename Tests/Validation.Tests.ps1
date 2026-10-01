@@ -15,23 +15,23 @@ Describe "Assert-Validation" {
 	}
 
 	It "should return an empty hash table if there are no validation errors" {
-		foreach ($object in $hashtable, $psObject) {
-			$errors = Assert-Validation $object @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
+		$hashtable, $psObject | ForEach-Object {
+			$errors = Assert-Validation $_ @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
 			Should-Be 0 $errors.Count
 		}
 	}
 
 	It "should return a non-empty hash table if there are validation errors" {
-		foreach ($object in $hashtable, $psObject) {
-			$errors = Assert-Validation $object @{ LastName = New-ValidatorNotEmpty "The last name is required." }
+		$hashtable, $psObject | ForEach-Object {
+			$errors = Assert-Validation $_ @{ LastName = New-ValidatorNotEmpty "The last name is required." }
 			Should-Be 1 $errors.Count
 			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
 		}
 	}
 
 	It "should support multiple validators per property" {
-		foreach ($object in $hashtable, $psObject) {
-			$errors = Assert-Validation $object @{
+		$hashtable, $psObject | ForEach-Object {
+			$errors = Assert-Validation $_ @{
 				FirstName = (New-ValidatorNotEmpty "The first name is required."), (New-ValidatorLike "C*" "The first name must start with the letter C.")
 				Gender = (New-ValidatorNotEmpty "The gender is empty."), (New-ValidatorEqual "Female" "Only women are allowed.")
 				LastName = New-ValidatorNotEmpty "The last name is required."
@@ -60,20 +60,20 @@ Describe "Test-Validation" {
 	}
 
 	It "should return `$true if there are no validation errors" {
-		foreach ($object in $hashtable, $psObject) {
-			Should-BeTrue (Test-Validation $object @{ FirstName = New-ValidatorNotEmpty "The first name is required." })
+		$hashtable, $psObject | ForEach-Object {
+			Should-BeTrue (Test-Validation $_ @{ FirstName = New-ValidatorNotEmpty "The first name is required." })
 		}
 	}
 
 	It "should return `$false if there are validation errors" {
-		foreach ($object in $hashtable, $psObject) {
-			Should-BeFalse (Test-Validation $object @{ LastName = New-ValidatorNotEmpty "The last name is required." })
+		$hashtable, $psObject | ForEach-Object {
+			Should-BeFalse (Test-Validation $_ @{ LastName = New-ValidatorNotEmpty "The last name is required." })
 		}
 	}
 
 	It "should support multiple validators per property" {
-		foreach ($object in $hashtable, $psObject) {
-			Should-BeFalse (Test-Validation $object @{
+		$hashtable, $psObject | ForEach-Object {
+			Should-BeFalse (Test-Validation $_ @{
 				FirstName = (New-ValidatorNotEmpty "The first name is required."), (New-ValidatorLike "C*" "The first name must start with the letter C.")
 				Gender = (New-ValidatorNotEmpty "The gender is empty."), (New-ValidatorEqual "Female" "Only women are allowed.")
 				LastName = New-ValidatorNotEmpty "The last name is required."

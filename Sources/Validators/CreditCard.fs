@@ -21,8 +21,8 @@ type NewValidatorCreditCardCommand () =
       $checksum = 0
       $evenDigit = $false
 
-      foreach ($character in $characters) {
-        $digit = ($character - [char] "0") * ($evenDigit ? 2 : 1)
+      $characters | ForEach-Object {
+        $digit = ($_ - [char] "0") * ($evenDigit ? 2 : 1)
         $evenDigit = -not $evenDigit
 
         while ($digit -gt 0) {
