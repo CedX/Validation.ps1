@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.7.1](https://github.com/CedX/Validation.ps1/compare/v0.7.0...v0.7.1)
+- Fixed the `Assert-Validation` and `Test-Validation` cmdlets when the input object is wrapped into a `[PSObject]`.
+
 ## Version [0.7.0](https://github.com/CedX/Validation.ps1/compare/v0.6.1...v0.7.0)
 - Ported the cmdlets to [F#](https://learn.microsoft.com/en-us/dotnet/fsharp).
 
