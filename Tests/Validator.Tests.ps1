@@ -28,9 +28,9 @@ Describe "New-Validator" {
 		}
 	}
 
-	Context "OfHashtable" {
+	Context "OfDictionary" {
 		It "should create a validator from the specified hash table" {
-			$validator = [Belin.Validation.Validator]::OfHashtable(@{ Reason = "An error occurred."; Test = { $false } })
+			$validator = [Belin.Validation.Validator]::OfDictionary(@{ Reason = "An error occurred."; Test = { $false } })
 			Should-BeString "An error occurred." $validator.Reason -CaseSensitive
 			Should-HaveType ([scriptblock]) $validator.Test
 		}
@@ -43,7 +43,7 @@ Describe "New-Validator" {
 		) {
 			Should-Throw -ScriptBlock {
 				[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "validator")]
-				$validator = [Belin.Validation.Validator]::OfHashtable($_)
+				$validator = [Belin.Validation.Validator]::OfDictionary($_)
 			}
 		}
 	}
