@@ -8,14 +8,13 @@ open System.Management.Automation
 module private Validation =
 
   /// Gets the value of the specified property of a given object.
-  let getValue (input: obj) (property: string): objnull =
-    let baseObject = match input with :? PSObject as psObject -> psObject.BaseObject | value -> value
-    match baseObject with
+  [<TailCall>]
+  let rec getValue (input: obj) (property: string): objnull =
+    match input with
     | :? IDictionary as dictionary -> dictionary[property]
-    | _ ->
-      match input with
-      | :? PSObject as psObject -> match psObject.Properties[property] with null -> null | propertyInfo -> propertyInfo.Value
-      | _ -> match input.GetType().GetProperty property with null -> null | propertyInfo -> propertyInfo.GetValue input
+    | :? PSObject as object when not (object.BaseObject :? PSObject) && not (object.BaseObject :? PSCustomObject) -> getValue object.BaseObject property
+    | :? PSObject as object -> match object.Properties[property] with null -> null | propertyInfo -> propertyInfo.Value
+    | _ -> match input.GetType().GetProperty property with null -> null | propertyInfo -> propertyInfo.GetValue input
 
   /// Ensures that the specified value is an array.
   /// The result is always an array of zero or more objects.
@@ -27,11 +26,13 @@ module private Validation =
     | element -> [| element |]
 
   /// Converts the specified validation rule to a `Validator` object.
-  let toValidator (property: string) (rule: obj): Validator =
+  [<TailCall>]
+  let rec toValidator (property: string) (rule: obj): Validator =
     match rule with
-    | :? Hashtable as hashtable -> Validator.OfHashtable hashtable
+    | :? IDictionary as dictionary -> Validator.OfDictionary dictionary
+    | :? PSObject as object when not (object.BaseObject :? PSObject) -> toValidator property object.BaseObject
     | :? Validator as validator -> validator
-    | _ -> invalidArg "RuleSet" $"""The "{property}" property has a validator of an unsupported type."""
+    | _ -> invalidArg (nameof rule) $"""The "{property}" property has a validator of an unsupported type."""
 
 /// Performs the data validation on the specified object according to a given set of validation rules.
 /// Returns the validation errors, if any.
@@ -58,7 +59,7 @@ type AssertValidationCommand() =
 
       let mutable ruleIndex = 0
       while not (errors.ContainsKey property) && ruleIndex < rules.Length do
-        let rule = match rules[ruleIndex] with :? PSObject as value -> value.BaseObject | value -> value
+        let rule = rules[ruleIndex]
         ruleIndex <- ruleIndex + 1
 
         let validator = Validation.toValidator property rule
@@ -95,7 +96,7 @@ type TestValidationCommand() =
 
       let mutable ruleIndex = 0
       while isValid && ruleIndex < rules.Length do
-        let rule = match rules[ruleIndex] with :? PSObject as psObject -> psObject.BaseObject | value -> value
+        let rule = rules[ruleIndex]
         ruleIndex <- ruleIndex + 1
 
         let validator = Validation.toValidator property rule
