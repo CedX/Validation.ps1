@@ -15,29 +15,32 @@ Describe "Assert-Validation" {
 	}
 
 	It "should return an empty hash table if there are no validation errors" {
+		$rules = @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
 		$hashtable, $psObject | ForEach-Object {
-			$errors = Assert-Validation $_ @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
+			$errors = Assert-Validation $_ $rules
 			Should-Be 0 $errors.Count
 		}
 	}
 
 	It "should return a non-empty hash table if there are validation errors" {
+		$rules = @{ LastName = New-ValidatorNotEmpty "The last name is required." }
 		$hashtable, $psObject | ForEach-Object {
-			$errors = Assert-Validation $_ @{ LastName = New-ValidatorNotEmpty "The last name is required." }
+			$errors = $_ | Assert-Validation -RuleSet $rules
 			Should-Be 1 $errors.Count
 			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
 		}
 	}
 
 	It "should support multiple validators per property" {
-		$hashtable, $psObject | ForEach-Object {
-			$errors = Assert-Validation $_ @{
-				FirstName = (New-ValidatorNotEmpty "The first name is required."), (New-ValidatorLike "C*" "The first name must start with the letter C.")
-				Gender = (New-ValidatorNotEmpty "The gender is empty."), (New-ValidatorEqual "Female" "Only women are allowed.")
-				LastName = New-ValidatorNotEmpty "The last name is required."
-				Password = (New-ValidatorNotEmpty "The password is empty."), (New-ValidatorMinLength 5 "The password is too short.")
-			}
+		$rules = @{
+			FirstName = (New-ValidatorNotEmpty "The first name is required."), (New-ValidatorLike "C*" "The first name must start with the letter C.")
+			Gender = (New-ValidatorNotEmpty "The gender is empty."), (New-ValidatorEqual "Female" "Only women are allowed.")
+			LastName = New-ValidatorNotEmpty "The last name is required."
+			Password = (New-ValidatorNotEmpty "The password is empty."), (New-ValidatorMinLength 5 "The password is too short.")
+		}
 
+		$hashtable, $psObject | ForEach-Object {
+			$errors = $_ | Assert-Validation -RuleSet $rules
 			Should-Be 3 $errors.Count
 			Should-BeString "Only women are allowed." $errors.Gender -CaseSensitive
 			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
@@ -60,25 +63,32 @@ Describe "Test-Validation" {
 	}
 
 	It "should return `$true if there are no validation errors" {
+		$rules = @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
 		$hashtable, $psObject | ForEach-Object {
-			Should-BeTrue (Test-Validation $_ @{ FirstName = New-ValidatorNotEmpty "The first name is required." })
+			Should-BeTrue (Test-Validation $_ $rules)
+			Should-BeTrue ($_ | Test-Validation -RuleSet $rules)
 		}
 	}
 
 	It "should return `$false if there are validation errors" {
+		$rules = @{ LastName = New-ValidatorNotEmpty "The last name is required." }
 		$hashtable, $psObject | ForEach-Object {
-			Should-BeFalse (Test-Validation $_ @{ LastName = New-ValidatorNotEmpty "The last name is required." })
+			Should-BeFalse (Test-Validation $_ $rules)
+			Should-BeFalse ($_ | Test-Validation -RuleSet $rules)
 		}
 	}
 
 	It "should support multiple validators per property" {
+		$rules = @{
+			FirstName = (New-ValidatorNotEmpty "The first name is required."), (New-ValidatorLike "C*" "The first name must start with the letter C.")
+			Gender = (New-ValidatorNotEmpty "The gender is empty."), (New-ValidatorEqual "Female" "Only women are allowed.")
+			LastName = New-ValidatorNotEmpty "The last name is required."
+			Password = (New-ValidatorNotEmpty "The password is empty."), (New-ValidatorMinLength 5 "The password is too short.")
+		}
+
 		$hashtable, $psObject | ForEach-Object {
-			Should-BeFalse (Test-Validation $_ @{
-				FirstName = (New-ValidatorNotEmpty "The first name is required."), (New-ValidatorLike "C*" "The first name must start with the letter C.")
-				Gender = (New-ValidatorNotEmpty "The gender is empty."), (New-ValidatorEqual "Female" "Only women are allowed.")
-				LastName = New-ValidatorNotEmpty "The last name is required."
-				Password = (New-ValidatorNotEmpty "The password is empty."), (New-ValidatorMinLength 5 "The password is too short.")
-			})
+			Should-BeFalse (Test-Validation $_ $rules)
+			Should-BeFalse ($_ | Test-Validation -RuleSet $rules)
 		}
 	}
 }
