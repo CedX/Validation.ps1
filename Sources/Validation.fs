@@ -46,11 +46,11 @@ type AssertValidationCommand () =
 
   /// The set of validation rules to apply.
   [<Parameter(Mandatory = true, Position = 2)>]
-  member val RuleSet = Hashtable () with get, set
+  member val RuleSet: IDictionary = Hashtable() with get, set
 
   /// Performs execution of this command.
   override this.ProcessRecord () =
-    let errors = Hashtable ()
+    let errors = Hashtable()
 
     for key in this.RuleSet.Keys do
       let property = string key
@@ -80,7 +80,7 @@ type TestValidationCommand () =
 
   /// The set of validation rules to apply.
   [<Parameter(Mandatory = true, Position = 2)>]
-  member val RuleSet = Hashtable () with get, set
+  member val RuleSet: IDictionary = Hashtable() with get, set
 
   /// Performs execution of this command.
   override this.ProcessRecord () =
