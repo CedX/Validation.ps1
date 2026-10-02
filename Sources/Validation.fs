@@ -21,8 +21,8 @@ module private Validation =
   let toArray (input: objnull): obj array =
     match input with
     | null -> [||]
-    | :? (obj array) as objectArray -> objectArray
-    | :? (obj seq) as objectSequence -> Seq.toArray objectSequence
+    | :? (obj array) as enumerable -> enumerable
+    | :? (obj seq) as enumerable -> Seq.toArray enumerable
     | element -> [| element |]
 
   /// Converts the specified validation rule to a `Validator` object.
