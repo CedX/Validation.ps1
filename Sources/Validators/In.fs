@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value matches an element from a set of possible values.
 [<Cmdlet(VerbsCommon.New, "ValidatorIn")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorInCommand () =
-  inherit Cmdlet ()
+type NewValidatorInCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -iin $this.Value"
@@ -35,8 +35,8 @@ type NewValidatorInCommand () =
 /// Creates a new validator that ensures the validated value does not match an element from a set of possible values.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotIn")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotInCommand () =
-  inherit Cmdlet ()
+type NewValidatorNotInCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -inotin $this.Value"

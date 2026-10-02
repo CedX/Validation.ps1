@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is a well-formed mail address.
 [<Cmdlet(VerbsCommon.New, "ValidatorEmail")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorEmailCommand () =
-  inherit Cmdlet ()
+type NewValidatorEmailCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock =

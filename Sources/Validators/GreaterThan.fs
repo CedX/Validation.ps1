@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is greater than a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorGreaterThan")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorGreaterThanCommand () =
-  inherit Cmdlet ()
+type NewValidatorGreaterThanCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -igt $this.Value"
@@ -35,8 +35,8 @@ type NewValidatorGreaterThanCommand () =
 /// Creates a new validator that ensures the validated value is greater than or equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorGreaterThanOrEqual")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorGreaterThanOrEqualCommand () =
-  inherit Cmdlet ()
+type NewValidatorGreaterThanOrEqualCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -cge $this.Value"

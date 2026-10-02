@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value matches a given wildcard pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorLike")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorLikeCommand () =
-  inherit Cmdlet ()
+type NewValidatorLikeCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -ilike $this.Value"
@@ -35,8 +35,8 @@ type NewValidatorLikeCommand () =
 /// Creates a new validator that ensures the validated value does not match a given wildcard pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotLike")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotLikeCommand () =
-  inherit Cmdlet ()
+type NewValidatorNotLikeCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -inotlike $this.Value"

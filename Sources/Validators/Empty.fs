@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is empty.
 [<Cmdlet(VerbsCommon.New, "ValidatorEmpty")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorEmptyCommand () =
-  inherit Cmdlet ()
+type NewValidatorEmptyCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock =
@@ -28,8 +28,8 @@ type NewValidatorEmptyCommand () =
 /// Creates a new validator that ensures the validated value is not empty.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotEmpty")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotEmptyCommand () =
-  inherit Cmdlet ()
+type NewValidatorNotEmptyCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock =

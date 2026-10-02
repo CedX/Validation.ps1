@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures a string length falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorLength")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorLengthCommand () =
-  inherit Cmdlet ()
+type NewValidatorLengthCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock =
@@ -33,8 +33,8 @@ type NewValidatorLengthCommand () =
 /// Creates a new validator that ensures the validated string has a maximum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMaxLength")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorMaxLengthCommand () =
-  inherit Cmdlet ()
+type NewValidatorMaxLengthCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "($_ -is [string]) -and ($_.Length -le $this.Value)"
@@ -53,8 +53,8 @@ type NewValidatorMaxLengthCommand () =
 /// Creates a new validator that ensures the validated string has a minimum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMinLength")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorMinLengthCommand () =
-  inherit Cmdlet ()
+type NewValidatorMinLengthCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "($_ -is [string]) -and ($_.Length -ge $this.Value)"

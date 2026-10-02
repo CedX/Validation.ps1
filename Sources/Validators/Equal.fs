@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorEqual")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorEqualCommand () =
-  inherit Cmdlet ()
+type NewValidatorEqualCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -ieq $this.Value"
@@ -35,8 +35,8 @@ type NewValidatorEqualCommand () =
 /// Creates a new validator that ensures the validated value is not equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotEqual")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotEqualCommand () =
-  inherit Cmdlet ()
+type NewValidatorNotEqualCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let insensitiveScriptBlock = ScriptBlock.Create "$_ -ine $this.Value"

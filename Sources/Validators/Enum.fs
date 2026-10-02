@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value exists in a specified enumeration.
 [<Cmdlet(VerbsCommon.New, "ValidatorEnum")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorEnumCommand () =
-  inherit Cmdlet ()
+type NewValidatorEnumCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "[Enum]::IsDefined($this.Value, $_)"

@@ -37,8 +37,8 @@ module private Validation =
 /// Returns the validation errors, if any.
 [<Cmdlet(VerbsLifecycle.Assert, "Validation")>]
 [<OutputType(typeof<Hashtable>)>]
-type AssertValidationCommand () =
-  inherit Cmdlet ()
+type AssertValidationCommand() =
+  inherit Cmdlet()
 
   /// The object to validate.
   [<Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)>]
@@ -71,8 +71,8 @@ type AssertValidationCommand () =
 /// Returns `true` if the validated object is valid, otherwise `false`.
 [<Cmdlet(VerbsDiagnostic.Test, "Validation")>]
 [<OutputType(typeof<bool>)>]
-type TestValidationCommand () =
-  inherit Cmdlet ()
+type TestValidationCommand() =
+  inherit Cmdlet()
 
   /// The object to validate.
   [<Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)>]

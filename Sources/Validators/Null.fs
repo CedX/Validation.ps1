@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is `$null`.
 [<Cmdlet(VerbsCommon.New, "ValidatorNull")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNullCommand () =
-  inherit Cmdlet ()
+type NewValidatorNullCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "$null -eq $_"
@@ -22,8 +22,8 @@ type NewValidatorNullCommand () =
 /// Creates a new validator that ensures the validated value is not `$null`.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotNull")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorNotNullCommand () =
-  inherit Cmdlet ()
+type NewValidatorNotNullCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let scriptBlock = ScriptBlock.Create "$null -ne $_"

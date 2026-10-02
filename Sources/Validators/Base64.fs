@@ -6,8 +6,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures the validated value is a well-formed Base64 string.
 [<Cmdlet(VerbsCommon.New, "ValidatorBase64")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorBase64Command () =
-  inherit Cmdlet ()
+type NewValidatorBase64Command() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let base64ScriptBlock = ScriptBlock.Create "($_ -is [string]) -and [System.Buffers.Text.Base64]::IsValid($_)"

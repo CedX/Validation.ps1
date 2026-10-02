@@ -7,8 +7,8 @@ open System.Management.Automation
 /// Creates a new validator that ensures a number falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorRange")>]
 [<OutputType(typeof<Validator>)>]
-type NewValidatorRangeCommand () =
-  inherit Cmdlet ()
+type NewValidatorRangeCommand() =
+  inherit Cmdlet()
 
   /// The script block used to perform the validation.
   static let exclusiveScriptBlock = ScriptBlock.Create "($_ -gt $this.LowerBound) -and ($_ -lt $this.UpperBound)"
