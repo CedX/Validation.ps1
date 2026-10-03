@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value matches a given regex pattern.
-[<Cmdlet(VerbsCommon.New, "ValidatorMatch")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorMatch"); OutputType(typeof<Validator>)>]
 type NewValidatorMatchCommand() =
   inherit Cmdlet()
 
@@ -33,8 +32,7 @@ type NewValidatorMatchCommand() =
     this.WriteObject (ComparisonValidator (this.Pattern, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value does not match a given regex pattern.
-[<Cmdlet(VerbsCommon.New, "ValidatorNotMatch")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorNotMatch"); OutputType(typeof<Validator>)>]
 type NewValidatorNotMatchCommand() =
   inherit Cmdlet()
 

@@ -36,8 +36,7 @@ module private Validation =
 
 /// Performs the data validation on the specified object according to a given set of validation rules.
 /// Returns the validation errors, if any.
-[<Cmdlet(VerbsLifecycle.Assert, "Validation")>]
-[<OutputType(typeof<Hashtable>)>]
+[<Cmdlet(VerbsLifecycle.Assert, "Validation"); OutputType(typeof<Hashtable>)>]
 type AssertValidationCommand() =
   inherit Cmdlet()
 
@@ -70,8 +69,7 @@ type AssertValidationCommand() =
 
 /// Performs the data validation on the specified object according to a given set of validation rules.
 /// Returns `true` if the validated object is valid, otherwise `false`.
-[<Cmdlet(VerbsDiagnostic.Test, "Validation")>]
-[<OutputType(typeof<bool>)>]
+[<Cmdlet(VerbsDiagnostic.Test, "Validation"); OutputType(typeof<bool>)>]
 type TestValidationCommand() =
   inherit Cmdlet()
 

@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is a well-formed credit card number.
-[<Cmdlet(VerbsCommon.New, "ValidatorCreditCard")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorCreditCard"); OutputType(typeof<Validator>)>]
 type NewValidatorCreditCardCommand() =
   inherit Cmdlet()
 

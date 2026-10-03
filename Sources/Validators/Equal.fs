@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is equal to a specific value.
-[<Cmdlet(VerbsCommon.New, "ValidatorEqual")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorEqual"); OutputType(typeof<Validator>)>]
 type NewValidatorEqualCommand() =
   inherit Cmdlet()
 
@@ -33,8 +32,7 @@ type NewValidatorEqualCommand() =
     this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value is not equal to a specific value.
-[<Cmdlet(VerbsCommon.New, "ValidatorNotEqual")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorNotEqual"); OutputType(typeof<Validator>)>]
 type NewValidatorNotEqualCommand() =
   inherit Cmdlet()
 

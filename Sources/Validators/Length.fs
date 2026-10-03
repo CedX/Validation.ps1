@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures a string length falls within a specified range.
-[<Cmdlet(VerbsCommon.New, "ValidatorLength")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorLength"); OutputType(typeof<Validator>)>]
 type NewValidatorLengthCommand() =
   inherit Cmdlet()
 
@@ -31,8 +30,7 @@ type NewValidatorLengthCommand() =
     this.WriteObject (RangeValidator (this.Min, this.Max, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated string has a maximum length.
-[<Cmdlet(VerbsCommon.New, "ValidatorMaxLength")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorMaxLength"); OutputType(typeof<Validator>)>]
 type NewValidatorMaxLengthCommand() =
   inherit Cmdlet()
 
@@ -51,8 +49,7 @@ type NewValidatorMaxLengthCommand() =
   override this.ProcessRecord () = this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated string has a minimum length.
-[<Cmdlet(VerbsCommon.New, "ValidatorMinLength")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorMinLength"); OutputType(typeof<Validator>)>]
 type NewValidatorMinLengthCommand() =
   inherit Cmdlet()
 

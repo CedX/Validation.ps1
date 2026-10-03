@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value matches a given wildcard pattern.
-[<Cmdlet(VerbsCommon.New, "ValidatorLike")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorLike"); OutputType(typeof<Validator>)>]
 type NewValidatorLikeCommand() =
   inherit Cmdlet()
 
@@ -33,8 +32,7 @@ type NewValidatorLikeCommand() =
     this.WriteObject (ComparisonValidator (this.Pattern, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value does not match a given wildcard pattern.
-[<Cmdlet(VerbsCommon.New, "ValidatorNotLike")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorNotLike"); OutputType(typeof<Validator>)>]
 type NewValidatorNotLikeCommand() =
   inherit Cmdlet()
 

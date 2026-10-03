@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is empty.
-[<Cmdlet(VerbsCommon.New, "ValidatorEmpty")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorEmpty"); OutputType(typeof<Validator>)>]
 type NewValidatorEmptyCommand() =
   inherit Cmdlet()
 
@@ -26,8 +25,7 @@ type NewValidatorEmptyCommand() =
   override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value is not empty.
-[<Cmdlet(VerbsCommon.New, "ValidatorNotEmpty")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorNotEmpty"); OutputType(typeof<Validator>)>]
 type NewValidatorNotEmptyCommand() =
   inherit Cmdlet()
 

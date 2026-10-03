@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is less than a specific value.
-[<Cmdlet(VerbsCommon.New, "ValidatorLessThan")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorLessThan"); OutputType(typeof<Validator>)>]
 type NewValidatorLessThanCommand() =
   inherit Cmdlet()
 
@@ -33,8 +32,7 @@ type NewValidatorLessThanCommand() =
     this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value is less than or equal to a specific value.
-[<Cmdlet(VerbsCommon.New, "ValidatorLessThanOrEqual")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorLessThanOrEqual"); OutputType(typeof<Validator>)>]
 type NewValidatorLessThanOrEqualCommand() =
   inherit Cmdlet()
 

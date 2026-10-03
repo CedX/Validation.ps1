@@ -48,8 +48,7 @@ type RangeValidator (lowerBound: IComparable, upperBound: IComparable, reason: s
   member val UpperBound: IComparable = upperBound
 
 /// Creates a new validator.
-[<Cmdlet(VerbsCommon.New, "Validator")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "Validator"); OutputType(typeof<Validator>)>]
 type NewValidatorCommand() =
   inherit Cmdlet()
 

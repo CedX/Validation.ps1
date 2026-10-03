@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value exists in a specified enumeration.
-[<Cmdlet(VerbsCommon.New, "ValidatorEnum")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorEnum"); OutputType(typeof<Validator>)>]
 type NewValidatorEnumCommand() =
   inherit Cmdlet()
 

@@ -4,8 +4,7 @@ open Belin.Validation
 open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is `$null`.
-[<Cmdlet(VerbsCommon.New, "ValidatorNull")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorNull"); OutputType(typeof<Validator>)>]
 type NewValidatorNullCommand() =
   inherit Cmdlet()
 
@@ -20,8 +19,7 @@ type NewValidatorNullCommand() =
   override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value is not `$null`.
-[<Cmdlet(VerbsCommon.New, "ValidatorNotNull")>]
-[<OutputType(typeof<Validator>)>]
+[<Cmdlet(VerbsCommon.New, "ValidatorNotNull"); OutputType(typeof<Validator>)>]
 type NewValidatorNotNullCommand() =
   inherit Cmdlet()
 
