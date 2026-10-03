@@ -1,5 +1,4 @@
-﻿using namespace System.Diagnostics.CodeAnalysis
-using module ../Validation.psd1
+﻿using module ../Validation.psd1
 
 <#
 .SYNOPSIS
@@ -14,7 +13,7 @@ Describe "New-Validator" {
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Belin" } }
 		) {
 			$validator = New-Validator "Reason" $test
-			Should-BeFalse $validator.IsValid($value)
+			$validator.IsValid($value) | Should-BeFalse
 		}
 
 		It "should return `$true if the validated value is valid" -ForEach @(
@@ -24,15 +23,15 @@ Describe "New-Validator" {
 			@{ Value = @{ Name = "Cédric" }; Test = { $_.Name -eq "Cédric" } }
 		) {
 			$validator = New-Validator "Reason" $test
-			Should-BeTrue $validator.IsValid($value)
+			$validator.IsValid($value) | Should-BeTrue
 		}
 	}
 
 	Context "OfDictionary" {
 		It "should create a validator from the specified hash table" {
 			$validator = [Belin.Validation.Validator]::OfDictionary(@{ Reason = "An error occurred."; Test = { $false } })
-			Should-BeString "An error occurred." $validator.Reason -CaseSensitive
-			Should-HaveType ([scriptblock]) $validator.Test
+			$validator.Reason | Should-BeString "An error occurred." -CaseSensitive
+			$validator.Test | Should-HaveType ([scriptblock])
 		}
 
 		It "should throw an exception when the hash table does not provide the expected properties" -ForEach @(
@@ -41,10 +40,7 @@ Describe "New-Validator" {
 			@{ Reason = 123; Test = { $false } }
 			@{ Reason = "An error occurred."; Test = "false" }
 		) {
-			Should-Throw -ScriptBlock {
-				[SuppressMessage("PSUseDeclaredVarsMoreThanAssignments", "validator")]
-				$validator = [Belin.Validation.Validator]::OfDictionary($_)
-			}
+			{ [Belin.Validation.Validator]::OfDictionary($_) } | Should-Throw
 		}
 	}
 
@@ -56,7 +52,7 @@ Describe "New-Validator" {
 			}
 
 			$validator.IsValid(123)
-			Should-BeString "The error message has been updated." $validator.Reason -CaseSensitive
+			$validator.Reason | Should-BeString "The error message has been updated." -CaseSensitive
 		}
 	}
 }

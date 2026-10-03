@@ -10,13 +10,13 @@ Describe "New-ValidatorBase64" {
 		@{ Value = "Y2VkeEBvdXRsb29rLmNvbQ=="; Url = $false }
 		@{ Value = "Y2VkeEBvdXRsb29rLmNvbQ"; Url = $true }
 	) {
-		Should-BeTrue (New-ValidatorBase64 "Reason" -Url:$url).IsValid($value)
+		(New-ValidatorBase64 "Reason" -Url:$url).IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the specified value is not a well-formed Base64 string" -ForEach @(
 		"SGVsbG8gV29ybGQh=="
 		"Y2VkeEBvdXRsb29rLmNvbQ"
 	) {
-		Should-BeFalse (New-ValidatorBase64 "Reason").IsValid($_)
+		(New-ValidatorBase64 "Reason").IsValid($_) | Should-BeFalse
 	}
 }

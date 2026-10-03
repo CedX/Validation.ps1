@@ -7,7 +7,7 @@
 Describe "New-ValidatorRange" {
 	Context "Error" {
 		It "should throw an exception if the minimum value is greater than the maximum value" {
-			Should-Throw -ScriptBlock { New-ValidatorRange 10 5 "Reason" }
+			{ New-ValidatorRange 10 5 "Reason" } | Should-Throw
 		}
 	}
 
@@ -25,7 +25,7 @@ Describe "New-ValidatorRange" {
 			@{ Value = 0; From = 1; To = 2 }
 			@{ Value = -456; From = -123; To = 0 }
 		) {
-			Should-BeFalse (New-ValidatorRange $from $to -Exclusive "Reason").IsValid($value)
+			(New-ValidatorRange $from $to -Exclusive "Reason").IsValid($value) | Should-BeFalse
 		}
 	}
 
@@ -36,14 +36,14 @@ Describe "New-ValidatorRange" {
 			@{ Value = 456; From = 123; To = 666 }
 			@{ Value = 100.99; From = 100; To = 101 }
 		) {
-			Should-BeTrue (New-ValidatorRange $from $to "Reason").IsValid($value)
+			(New-ValidatorRange $from $to "Reason").IsValid($value) | Should-BeTrue
 		}
 
 		It "should return `$false if the specified value is outside the given bounds" -ForEach @(
 			@{ Value = 0; From = 1; To = 2 }
 			@{ Value = -456; From = -123; To = 0 }
 		) {
-			Should-BeFalse (New-ValidatorRange $from $to "Reason").IsValid($value)
+			(New-ValidatorRange $from $to "Reason").IsValid($value) | Should-BeFalse
 		}
 	}
 }

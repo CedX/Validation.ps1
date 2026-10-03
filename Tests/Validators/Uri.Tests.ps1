@@ -10,7 +10,7 @@ Describe "New-ValidatorUri" {
 		@{ Value = "mailto:john.doe@example.com"; Scheme = "mailto" }
 		@{ Value = "sftp://ftp.example.com:21"; Scheme = "ftp", "sftp" }
 	) {
-		Should-BeTrue (New-ValidatorUri "Reason" $scheme).IsValid($value)
+		(New-ValidatorUri "Reason" $scheme).IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the specified value is not a well-formed absolute URI" -ForEach @(
@@ -18,6 +18,6 @@ Describe "New-ValidatorUri" {
 		@{ Value = "http://example.com/ folder / file"; Scheme = "http", "https" }
 		@{ Value = "mailto:john.doe@example.com"; Scheme = "http", "https" }
 	) {
-		Should-BeFalse (New-ValidatorUri "Reason" $scheme).IsValid($value)
+		(New-ValidatorUri "Reason" $scheme).IsValid($value) | Should-BeFalse
 	}
 }

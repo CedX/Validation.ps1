@@ -11,7 +11,7 @@ Describe "New-ValidatorMatch" {
 		@{ Value = "bar"; Pattern = "^bar?" }
 		@{ Value = "baz"; Pattern = ".z$" }
 	) {
-		Should-BeTrue (New-ValidatorMatch $pattern "Reason").IsValid($value)
+		(New-ValidatorMatch $pattern "Reason").IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the value does not match the specified pattern" -ForEach @(
@@ -35,7 +35,7 @@ Describe "New-ValidatorNotMatch" {
 		@{ Value = "baz"; Pattern = "ar$" }
 		@{ Value = "qux"; Pattern = "^qi" }
 	) {
-		Should-BeTrue (New-ValidatorNotMatch $pattern "Reason").IsValid($value)
+		(New-ValidatorNotMatch $pattern "Reason").IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the value matches the specified pattern" -ForEach @(
@@ -44,6 +44,6 @@ Describe "New-ValidatorNotMatch" {
 		@{ Value = "bar"; Pattern = "^bar?" }
 		@{ Value = "baz"; Pattern = ".z$" }
 	) {
-		Should-BeFalse (New-ValidatorNotMatch $pattern "Reason").IsValid($value)
+		(New-ValidatorNotMatch $pattern "Reason").IsValid($value) | Should-BeFalse
 	}
 }

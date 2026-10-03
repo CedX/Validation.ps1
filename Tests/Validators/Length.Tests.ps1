@@ -9,22 +9,22 @@ Describe "New-ValidatorLength" {
 		@{ Value = ""; Min = 0; Max = 0 }
 		@{ Value = "foo"; Min = 2; Max = 5 }
 	) {
-		Should-BeTrue (New-ValidatorLength $min $max "Reason").IsValid($value)
+		(New-ValidatorLength $min $max "Reason").IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the length of the specified string is outside the given bounds" -ForEach @(
 		@{ Value = "bar"; Min = 4; Max = 8 }
 		@{ Value = "baz"; Min = 1; Max = 2 }
 	) {
-		Should-BeFalse (New-ValidatorLength $min $max "Reason").IsValid($value)
+		(New-ValidatorLength $min $max "Reason").IsValid($value) | Should-BeFalse
 	}
 
 	It "should return `$false if the validated value is not a string" {
-		Should-BeFalse (New-ValidatorLength 0 1000 "Reason").IsValid(123)
+		(New-ValidatorLength 0 1000 "Reason").IsValid(123) | Should-BeFalse
 	}
 
 	It "should throw an exception if the minimum length is greater than the maximum length" {
-		Should-Throw -ScriptBlock { New-ValidatorLength 10 5 "Reason" }
+		{ New-ValidatorLength 10 5 "Reason" } | Should-Throw
 	}
 }
 
@@ -37,18 +37,18 @@ Describe "New-ValidatorMaxLength" {
 		@{ Value = ""; Length = 0 }
 		@{ Value = "foo"; Length = 5 }
 	) {
-		Should-BeTrue (New-ValidatorMaxLength $length "Reason").IsValid($value)
+		(New-ValidatorMaxLength $length "Reason").IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the length of the specified string is greater than the given value" -ForEach @(
 		@{ Value = "bar"; Length = 0 }
 		@{ Value = "baz"; Length = 2 }
 	) {
-		Should-BeFalse (New-ValidatorMaxLength $length "Reason").IsValid($value)
+		(New-ValidatorMaxLength $length "Reason").IsValid($value) | Should-BeFalse
 	}
 
 	It "should return `$false if the validated value is not a string" {
-		Should-BeFalse (New-ValidatorMaxLength 1000 "Reason").IsValid(123)
+		(New-ValidatorMaxLength 1000 "Reason").IsValid(123) | Should-BeFalse
 	}
 }
 
@@ -61,17 +61,17 @@ Describe "New-ValidatorMinLength" {
 		@{ Value = ""; Length = 0 }
 		@{ Value = "foo"; Length = 2 }
 	) {
-		Should-BeTrue (New-ValidatorMinLength $length "Reason").IsValid($value)
+		(New-ValidatorMinLength $length "Reason").IsValid($value) | Should-BeTrue
 	}
 
 	It "should return `$false if the length of the specified string is less than the given value" -ForEach @(
 		@{ Value = ""; Length = 1 }
 		@{ Value = "bar"; Length = 5 }
 	) {
-		Should-BeFalse (New-ValidatorMinLength $length "Reason").IsValid($value)
+		(New-ValidatorMinLength $length "Reason").IsValid($value) | Should-BeFalse
 	}
 
 	It "should return `$false if the validated value is not a string" {
-		Should-BeFalse (New-ValidatorMinLength 1000 "Reason").IsValid(123)
+		(New-ValidatorMinLength 1000 "Reason").IsValid(123) | Should-BeFalse
 	}
 }

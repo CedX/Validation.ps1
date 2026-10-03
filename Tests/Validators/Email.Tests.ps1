@@ -6,7 +6,7 @@
 #>
 Describe "New-ValidatorEmail" {
 	It "should return `$true if the specified value is a well-formed mail address" -ForEach "cedx@outlook.com", "satan@hell.hot" {
-		Should-BeTrue (New-ValidatorEmail "Reason").IsValid($_)
+		(New-ValidatorEmail "Reason").IsValid($_) | Should-BeTrue
 	}
 
 	It "should return `$false if the specified value is not a well-formed mail address" -ForEach @(
@@ -15,6 +15,6 @@ Describe "New-ValidatorEmail" {
 		"satan@hell@hot"
 		"satan`r@hell.hot"
 	) {
-		Should-BeFalse (New-ValidatorEmail "Reason").IsValid($_)
+		(New-ValidatorEmail "Reason").IsValid($_) | Should-BeFalse
 	}
 }

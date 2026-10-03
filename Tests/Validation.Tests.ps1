@@ -18,7 +18,7 @@ Describe "Assert-Validation" {
 		$rules = @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
 		$hashtable, $psObject | ForEach-Object {
 			$errors = Assert-Validation $_ $rules
-			Should-Be 0 $errors.Count
+			$errors.Count | Should-Be 0
 		}
 	}
 
@@ -26,8 +26,8 @@ Describe "Assert-Validation" {
 		$rules = @{ LastName = New-ValidatorNotEmpty "The last name is required." }
 		$hashtable, $psObject | ForEach-Object {
 			$errors = $_ | Assert-Validation -RuleSet $rules
-			Should-Be 1 $errors.Count
-			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
+			$errors.Count | Should-Be 1
+			$errors.LastName | Should-BeString "The last name is required." -CaseSensitive
 		}
 	}
 
@@ -41,10 +41,10 @@ Describe "Assert-Validation" {
 
 		$hashtable, $psObject | ForEach-Object {
 			$errors = $_ | Assert-Validation -RuleSet $rules
-			Should-Be 3 $errors.Count
-			Should-BeString "Only women are allowed." $errors.Gender -CaseSensitive
-			Should-BeString "The last name is required." $errors.LastName -CaseSensitive
-			Should-BeString "The password is empty." $errors.Password -CaseSensitive
+			$errors.Count | Should-Be 3
+			$errors.Gender | Should-BeString "Only women are allowed." -CaseSensitive
+			$errors.LastName | Should-BeString "The last name is required." -CaseSensitive
+			$errors.Password | Should-BeString "The password is empty." -CaseSensitive
 		}
 	}
 }
@@ -65,16 +65,16 @@ Describe "Test-Validation" {
 	It "should return `$true if there are no validation errors" {
 		$rules = @{ FirstName = New-ValidatorNotEmpty "The first name is required." }
 		$hashtable, $psObject | ForEach-Object {
-			Should-BeTrue (Test-Validation $_ $rules)
-			Should-BeTrue ($_ | Test-Validation -RuleSet $rules)
+			(Test-Validation $_ $rules) | Should-BeTrue
+			($_ | Test-Validation -RuleSet $rules) | Should-BeTrue
 		}
 	}
 
 	It "should return `$false if there are validation errors" {
 		$rules = @{ LastName = New-ValidatorNotEmpty "The last name is required." }
 		$hashtable, $psObject | ForEach-Object {
-			Should-BeFalse (Test-Validation $_ $rules)
-			Should-BeFalse ($_ | Test-Validation -RuleSet $rules)
+			(Test-Validation $_ $rules) | Should-BeFalse
+			($_ | Test-Validation -RuleSet $rules) | Should-BeFalse
 		}
 	}
 
@@ -87,8 +87,8 @@ Describe "Test-Validation" {
 		}
 
 		$hashtable, $psObject | ForEach-Object {
-			Should-BeFalse (Test-Validation $_ $rules)
-			Should-BeFalse ($_ | Test-Validation -RuleSet $rules)
+			(Test-Validation $_ $rules) | Should-BeFalse
+			($_ | Test-Validation -RuleSet $rules) | Should-BeFalse
 		}
 	}
 }
