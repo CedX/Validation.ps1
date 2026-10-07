@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value exists in a specified enumeration.
 [<Cmdlet(VerbsCommon.New, "ValidatorEnum"); OutputType(typeof<Validator>)>]
-type NewValidatorEnumCommand() =
+type NewValidatorEnum() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -13,7 +13,7 @@ type NewValidatorEnumCommand() =
 
   /// An enumeration type.
   [<Parameter(Mandatory = true, Position = 1)>]
-  member val Type = typeof<NewValidatorEnumCommand> with get, set
+  member val Type = typeof<NewValidatorEnum> with get, set
 
   /// The error message describing the validation failure.
   [<Parameter(Mandatory = true, Position = 2)>]

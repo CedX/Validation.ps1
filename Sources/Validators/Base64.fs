@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is a well-formed Base64 string.
 [<Cmdlet(VerbsCommon.New, "ValidatorBase64"); OutputType(typeof<Validator>)>]
-type NewValidatorBase64Command() =
+type NewValidatorBase64() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

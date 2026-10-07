@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is a well-formed absolute URI.
 [<Cmdlet(VerbsCommon.New, "ValidatorUri"); OutputType(typeof<Validator>)>]
-type NewValidatorUriCommand() =
+type NewValidatorUri() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is `$null`.
 [<Cmdlet(VerbsCommon.New, "ValidatorNull"); OutputType(typeof<Validator>)>]
-type NewValidatorNullCommand() =
+type NewValidatorNull() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -20,7 +20,7 @@ type NewValidatorNullCommand() =
 
 /// Creates a new validator that ensures the validated value is not `$null`.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotNull"); OutputType(typeof<Validator>)>]
-type NewValidatorNotNullCommand() =
+type NewValidatorNotNull() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures a collection length falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorCount"); OutputType(typeof<Validator>)>]
-type NewValidatorCountCommand() =
+type NewValidatorCount() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -30,7 +30,7 @@ type NewValidatorCountCommand() =
 
 /// Creates a new validator that ensures the validated value has a maximum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMaxCount"); OutputType(typeof<Validator>)>]
-type NewValidatorMaxCountCommand() =
+type NewValidatorMaxCount() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -49,7 +49,7 @@ type NewValidatorMaxCountCommand() =
 
 /// Creates a new validator that ensures the validated value has a minimum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMinCount"); OutputType(typeof<Validator>)>]
-type NewValidatorMinCountCommand() =
+type NewValidatorMinCount() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

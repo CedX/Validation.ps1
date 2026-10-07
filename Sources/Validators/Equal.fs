@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorEqual"); OutputType(typeof<Validator>)>]
-type NewValidatorEqualCommand() =
+type NewValidatorEqual() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -33,7 +33,7 @@ type NewValidatorEqualCommand() =
 
 /// Creates a new validator that ensures the validated value is not equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotEqual"); OutputType(typeof<Validator>)>]
-type NewValidatorNotEqualCommand() =
+type NewValidatorNotEqual() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

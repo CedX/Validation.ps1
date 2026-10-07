@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is a well-formed credit card number.
 [<Cmdlet(VerbsCommon.New, "ValidatorCreditCard"); OutputType(typeof<Validator>)>]
-type NewValidatorCreditCardCommand() =
+type NewValidatorCreditCard() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

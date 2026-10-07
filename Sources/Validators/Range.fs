@@ -6,7 +6,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures a number falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorRange"); OutputType(typeof<Validator>)>]
-type NewValidatorRangeCommand() =
+type NewValidatorRange() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

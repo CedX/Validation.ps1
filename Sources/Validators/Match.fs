@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value matches a given regex pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorMatch"); OutputType(typeof<Validator>)>]
-type NewValidatorMatchCommand() =
+type NewValidatorMatch() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -33,7 +33,7 @@ type NewValidatorMatchCommand() =
 
 /// Creates a new validator that ensures the validated value does not match a given regex pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotMatch"); OutputType(typeof<Validator>)>]
-type NewValidatorNotMatchCommand() =
+type NewValidatorNotMatch() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

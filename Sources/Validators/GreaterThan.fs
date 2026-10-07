@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is greater than a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorGreaterThan"); OutputType(typeof<Validator>)>]
-type NewValidatorGreaterThanCommand() =
+type NewValidatorGreaterThan() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -33,7 +33,7 @@ type NewValidatorGreaterThanCommand() =
 
 /// Creates a new validator that ensures the validated value is greater than or equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorGreaterThanOrEqual"); OutputType(typeof<Validator>)>]
-type NewValidatorGreaterThanOrEqualCommand() =
+type NewValidatorGreaterThanOrEqual() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

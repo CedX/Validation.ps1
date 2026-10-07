@@ -49,7 +49,7 @@ type RangeValidator (lowerBound: IComparable, upperBound: IComparable, reason: s
 
 /// Creates a new validator.
 [<Cmdlet(VerbsCommon.New, "Validator"); OutputType(typeof<Validator>)>]
-type NewValidatorCommand() =
+type NewValidator() =
   inherit Cmdlet()
 
   /// The error message describing the validation failure.

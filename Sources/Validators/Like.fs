@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value matches a given wildcard pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorLike"); OutputType(typeof<Validator>)>]
-type NewValidatorLikeCommand() =
+type NewValidatorLike() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -33,7 +33,7 @@ type NewValidatorLikeCommand() =
 
 /// Creates a new validator that ensures the validated value does not match a given wildcard pattern.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotLike"); OutputType(typeof<Validator>)>]
-type NewValidatorNotLikeCommand() =
+type NewValidatorNotLike() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

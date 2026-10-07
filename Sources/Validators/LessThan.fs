@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value is less than a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorLessThan"); OutputType(typeof<Validator>)>]
-type NewValidatorLessThanCommand() =
+type NewValidatorLessThan() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -33,7 +33,7 @@ type NewValidatorLessThanCommand() =
 
 /// Creates a new validator that ensures the validated value is less than or equal to a specific value.
 [<Cmdlet(VerbsCommon.New, "ValidatorLessThanOrEqual"); OutputType(typeof<Validator>)>]
-type NewValidatorLessThanOrEqualCommand() =
+type NewValidatorLessThanOrEqual() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

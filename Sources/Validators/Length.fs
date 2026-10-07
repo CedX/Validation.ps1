@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures a string length falls within a specified range.
 [<Cmdlet(VerbsCommon.New, "ValidatorLength"); OutputType(typeof<Validator>)>]
-type NewValidatorLengthCommand() =
+type NewValidatorLength() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -31,7 +31,7 @@ type NewValidatorLengthCommand() =
 
 /// Creates a new validator that ensures the validated string has a maximum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMaxLength"); OutputType(typeof<Validator>)>]
-type NewValidatorMaxLengthCommand() =
+type NewValidatorMaxLength() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -50,7 +50,7 @@ type NewValidatorMaxLengthCommand() =
 
 /// Creates a new validator that ensures the validated string has a minimum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMinLength"); OutputType(typeof<Validator>)>]
-type NewValidatorMinLengthCommand() =
+type NewValidatorMinLength() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.

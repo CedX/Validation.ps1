@@ -5,7 +5,7 @@ open System.Management.Automation
 
 /// Creates a new validator that ensures the validated value matches an element from a set of possible values.
 [<Cmdlet(VerbsCommon.New, "ValidatorIn"); OutputType(typeof<Validator>)>]
-type NewValidatorInCommand() =
+type NewValidatorIn() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
@@ -33,7 +33,7 @@ type NewValidatorInCommand() =
 
 /// Creates a new validator that ensures the validated value does not match an element from a set of possible values.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotIn"); OutputType(typeof<Validator>)>]
-type NewValidatorNotInCommand() =
+type NewValidatorNotIn() =
   inherit Cmdlet()
 
   /// The script block used to perform the validation.
