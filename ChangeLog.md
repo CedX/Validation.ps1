@@ -1,6 +1,7 @@
 # Changelog
 
 ## Version [1.0.0](https://github.com/CedX/Validation.ps1/compare/v0.7.1...v1.0.0)
+- Fixed the handling of `[PSObject]` instances.
 - First stable release.
 
 ## Version [0.7.1](https://github.com/CedX/Validation.ps1/compare/v0.7.0...v0.7.1)

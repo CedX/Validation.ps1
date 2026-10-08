@@ -58,7 +58,7 @@ type NewValidator() =
 
   /// The script block used to perform the validation.
   [<Parameter(Mandatory = true, Position = 2)>]
-  member val Test = ScriptBlock.Create "$false" with get, set
+  member val Test = ScriptBlock.Create "return $false" with get, set
 
   /// Performs execution of this command.
   override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, this.Test))
