@@ -1,5 +1,5 @@
 @{
-	ModuleVersion = "0.7.1"
+	ModuleVersion = "1.0.0"
 	PowerShellVersion = "7.6"
 	RootModule = "Binaries/Belin.Validation.dll"
 

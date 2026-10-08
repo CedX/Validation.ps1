@@ -4,7 +4,7 @@
 		<Copyright>© Cédric Belin</Copyright>
 		<Description>A simple yet effective validation engine specifically designed for PowerShell.</Description>
 		<Product>Validation for PowerShell</Product>
-		<Version>0.7.1</Version>
+		<Version>1.0.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
