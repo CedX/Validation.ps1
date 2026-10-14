@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [2026.10.0](https://github.com/CedX/Validation.ps1/compare/v1.0.0...v2026.10.0)
+- Switched to a year-based versioning.
+- Updated the package dependencies.
+
 ## Version [1.0.0](https://github.com/CedX/Validation.ps1/compare/v0.7.1...v1.0.0)
 - Fixed the handling of `[PSObject]` instances.
 - First stable release.

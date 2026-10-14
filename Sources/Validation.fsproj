@@ -4,7 +4,7 @@
 		<Copyright>© Cédric Belin</Copyright>
 		<Description>A simple yet effective validation engine specifically designed for PowerShell.</Description>
 		<Product>Validation for PowerShell</Product>
-		<Version>1.0.0</Version>
+		<Version>2026.10.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -29,21 +29,6 @@
 	<ItemGroup>
 		<Compile Include="Validator.fs" />
 		<Compile Include="Validation.fs" />
-		<Compile Include="Validators/Base64.fs" />
-		<Compile Include="Validators/Count.fs" />
-		<Compile Include="Validators/CreditCard.fs" />
-		<Compile Include="Validators/Email.fs" />
-		<Compile Include="Validators/Empty.fs" />
-		<Compile Include="Validators/Enum.fs" />
-		<Compile Include="Validators/Equal.fs" />
-		<Compile Include="Validators/GreaterThan.fs" />
-		<Compile Include="Validators/In.fs" />
-		<Compile Include="Validators/Length.fs" />
-		<Compile Include="Validators/LessThan.fs" />
-		<Compile Include="Validators/Like.fs" />
-		<Compile Include="Validators/Match.fs" />
-		<Compile Include="Validators/Null.fs" />
-		<Compile Include="Validators/Range.fs" />
-		<Compile Include="Validators/Uri.fs" />
+		<Compile Include="Validators/*.fs" />
 	</ItemGroup>
 </Project>
