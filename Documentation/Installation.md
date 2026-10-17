@@ -24,5 +24,5 @@ Install-PSResource Belin.Validation -Repository PSGallery
 Now in your [PowerShell](https://learn.microsoft.com/en-us/powershell) code, you can use:
 
 ```powershell
-using module Belin.Validation
+Import-Module Belin.Validation
 ```
