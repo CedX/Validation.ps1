@@ -25,9 +25,9 @@ type Validator (reason: string, test: ScriptBlock) =
     Convert.ToBoolean (output.BaseObject, CultureInfo.InvariantCulture)
 
   /// Creates a new validator from the specified hash table.
-  static member OfDictionary (hashtable: IDictionary) =
-    let reason = match hashtable["Reason"] with :? string as value -> value | _ -> invalidArg (nameof hashtable) "Error message missing or invalid."
-    let test = match hashtable["Test"] with :? ScriptBlock as script -> script | _ -> invalidArg (nameof hashtable) "Script block missing or invalid."
+  static member OfDictionary (dictionary: IDictionary) =
+    let reason = match dictionary["Reason"] with :? string as value -> value | _ -> invalidArg (nameof dictionary) "Error message missing or invalid."
+    let test = match dictionary["Test"] with :? ScriptBlock as script -> script | _ -> invalidArg (nameof dictionary) "Script block missing or invalid."
     Validator (reason, test)
 
 /// A validator that compares a value to another reference value.
