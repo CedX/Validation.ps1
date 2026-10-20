@@ -16,7 +16,7 @@ type Validator (reason: string, test: ScriptBlock) =
   member val Test: ScriptBlock = test
 
   /// Returns a value indicating whether the specified value is valid according to this validator.
-  member this.IsValid (value: objnull): bool =
+  member this.IsValid(value: objnull): bool =
     let variables = List<PSVariable> 2
     variables.Add(PSVariable("this", this))
     variables.Add(PSVariable("_", value))
@@ -25,7 +25,7 @@ type Validator (reason: string, test: ScriptBlock) =
     Convert.ToBoolean (output.BaseObject, CultureInfo.InvariantCulture)
 
   /// Creates a new validator from the specified hash table.
-  static member OfDictionary (dictionary: IDictionary) =
+  static member OfDictionary(dictionary: IDictionary) =
     let reason = match dictionary["Reason"] with :? string as value -> value | _ -> invalidArg (nameof dictionary) "Error message missing or invalid."
     let test = match dictionary["Test"] with :? ScriptBlock as script -> script | _ -> invalidArg (nameof dictionary) "Script block missing or invalid."
     Validator (reason, test)
