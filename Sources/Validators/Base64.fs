@@ -23,6 +23,6 @@ type NewValidatorBase64() =
   member val Url = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () =
+  override this.ProcessRecord() =
     let scriptBlock = if this.Url.IsPresent then base64UrlScriptBlock else base64ScriptBlock
-    this.WriteObject (Validator (this.Reason, scriptBlock))
+    this.WriteObject (Validator(this.Reason, scriptBlock))

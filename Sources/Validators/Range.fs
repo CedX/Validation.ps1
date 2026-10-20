@@ -32,7 +32,7 @@ type NewValidatorRange() =
   member val Exclusive = SwitchParameter false with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () =
+  override this.ProcessRecord() =
     if this.To < this.From then invalidArg (nameof this.To) "The maximum value is less than the minimum value."
     let scriptBlock = if this.Exclusive.IsPresent then exclusiveScriptBlock else inclusiveScriptBlock
-    this.WriteObject (RangeValidator (this.From, this.To, this.Reason, scriptBlock))
+    this.WriteObject (RangeValidator(this.From, this.To, this.Reason, scriptBlock))

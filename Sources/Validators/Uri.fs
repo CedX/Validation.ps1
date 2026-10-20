@@ -21,4 +21,4 @@ type NewValidatorUri() =
   member val Scheme = [| "http"; "https" |] with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () = this.WriteObject (ComparisonValidator (this.Scheme, this.Reason, scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (ComparisonValidator(this.Scheme, this.Reason, scriptBlock))

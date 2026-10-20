@@ -38,4 +38,4 @@ type NewValidatorCreditCard() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, scriptBlock))

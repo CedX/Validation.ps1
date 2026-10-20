@@ -22,7 +22,7 @@ type NewValidatorEmpty() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated value is not empty.
 [<Cmdlet(VerbsCommon.New, "ValidatorNotEmpty"); OutputType(typeof<Validator>)>]
@@ -43,4 +43,4 @@ type NewValidatorNotEmpty() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, scriptBlock))

@@ -7,7 +7,7 @@ open System.Globalization
 open System.Management.Automation
 
 /// A generic validator.
-type Validator (reason: string, test: ScriptBlock) =
+type Validator(reason: string, test: ScriptBlock) =
 
   /// The error message describing the validation failure.
   member val Reason: string = reason with get, set
@@ -28,18 +28,18 @@ type Validator (reason: string, test: ScriptBlock) =
   static member OfDictionary(dictionary: IDictionary) =
     let reason = match dictionary["Reason"] with :? string as value -> value | _ -> invalidArg (nameof dictionary) "Error message missing or invalid."
     let test = match dictionary["Test"] with :? ScriptBlock as script -> script | _ -> invalidArg (nameof dictionary) "Script block missing or invalid."
-    Validator (reason, test)
+    Validator(reason, test)
 
 /// A validator that compares a value to another reference value.
-type ComparisonValidator (value: objnull, reason: string, test: ScriptBlock) =
-  inherit Validator (reason, test)
+type ComparisonValidator(value: objnull, reason: string, test: ScriptBlock) =
+  inherit Validator(reason, test)
 
   /// The comparison value.
   member val Value: objnull = value
 
 /// A validator that ensures a value falls within a specified range.
-type RangeValidator (lowerBound: IComparable, upperBound: IComparable, reason: string, test: ScriptBlock) =
-  inherit Validator (reason, test)
+type RangeValidator(lowerBound: IComparable, upperBound: IComparable, reason: string, test: ScriptBlock) =
+  inherit Validator(reason, test)
 
   /// The lower bound.
   member val LowerBound: IComparable = lowerBound
@@ -61,4 +61,4 @@ type NewValidator() =
   member val Test = ScriptBlock.Create "return $false" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () = this.WriteObject (Validator (this.Reason, this.Test))
+  override this.ProcessRecord() = this.WriteObject (Validator(this.Reason, this.Test))

@@ -25,9 +25,9 @@ type NewValidatorLength() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () =
+  override this.ProcessRecord() =
     if this.Max < this.Min then invalidArg (nameof this.Max) "The maximum length is less than the minimum length."
-    this.WriteObject (RangeValidator (this.Min, this.Max, this.Reason, scriptBlock))
+    this.WriteObject (RangeValidator(this.Min, this.Max, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated string has a maximum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMaxLength"); OutputType(typeof<Validator>)>]
@@ -46,7 +46,7 @@ type NewValidatorMaxLength() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () = this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))
 
 /// Creates a new validator that ensures the validated string has a minimum length.
 [<Cmdlet(VerbsCommon.New, "ValidatorMinLength"); OutputType(typeof<Validator>)>]
@@ -65,4 +65,4 @@ type NewValidatorMinLength() =
   member val Reason = "" with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () = this.WriteObject (ComparisonValidator (this.Value, this.Reason, scriptBlock))
+  override this.ProcessRecord() = this.WriteObject (ComparisonValidator(this.Value, this.Reason, scriptBlock))

@@ -27,7 +27,7 @@ module private Validation =
 
   /// Converts the specified validation rule to a `Validator` object.
   [<TailCall>]
-  let rec toValidator (property: string) (rule: obj): Validator =
+  let rec toValidator(property: string) (rule: obj): Validator =
     match rule with
     | :? IDictionary as dictionary -> Validator.OfDictionary dictionary
     | :? PSObject as object when not (object.BaseObject :? PSObject) -> toValidator property object.BaseObject
@@ -49,7 +49,7 @@ type AssertValidation() =
   member val RuleSet: IDictionary = Hashtable() with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () =
+  override this.ProcessRecord() =
     let errors = Hashtable()
 
     for key in this.RuleSet.Keys do
@@ -82,7 +82,7 @@ type TestValidation() =
   member val RuleSet: IDictionary = Hashtable() with get, set
 
   /// Performs execution of this command.
-  override this.ProcessRecord () =
+  override this.ProcessRecord() =
     let mutable isValid = true
     let keys = this.RuleSet.Keys |> Seq.cast<string> |> Array.ofSeq
 
