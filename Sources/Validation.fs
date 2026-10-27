@@ -32,7 +32,7 @@ module private Validation =
     | :? IDictionary as dictionary -> Validator.OfDictionary dictionary
     | :? PSObject as object when not (object.BaseObject :? PSObject) -> toValidator property object.BaseObject
     | :? Validator as validator -> validator
-    | _ -> invalidArg (nameof rule) $"""The "{property}" property has a validator of an unsupported type."""
+    | _ -> invalidArg (nameof rule) $@"The ""{property}"" property has a validator of an unsupported type."
 
 /// Performs the data validation on the specified object according to a given set of validation rules.
 /// Returns the validation errors, if any.
