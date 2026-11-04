@@ -2,7 +2,6 @@ namespace Belin.Validation
 
 open System
 open System.Collections
-open System.Collections.Generic
 open System.Globalization
 open System.Management.Automation
 
@@ -17,7 +16,7 @@ type Validator(reason: string, test: ScriptBlock) =
 
   /// Returns a value indicating whether the specified value is valid according to this validator.
   member this.IsValid(value: objnull): bool =
-    let variables = List<PSVariable> 2
+    let variables = ResizeArray<PSVariable> 2
     variables.Add(PSVariable("this", this))
     variables.Add(PSVariable("_", value))
 
