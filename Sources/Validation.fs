@@ -84,7 +84,7 @@ type TestValidation() =
   /// Performs execution of this command.
   override this.ProcessRecord() =
     let mutable isValid = true
-    let keys = this.RuleSet.Keys |> Seq.cast<string> |> Array.ofSeq
+    let keys = this.RuleSet.Keys |> Seq.cast<string> |> Seq.toArray
 
     let mutable keyIndex = 0
     while isValid && keyIndex < keys.Length do
