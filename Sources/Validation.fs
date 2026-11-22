@@ -13,8 +13,8 @@ module private Validation =
     match input with
     | :? IDictionary as dictionary -> dictionary[property]
     | :? PSObject as object when not (object.BaseObject :? PSObject) && not (object.BaseObject :? PSCustomObject) -> getValue object.BaseObject property
-    | :? PSObject as object -> match object.Properties[property] with null -> null | propertyInfo -> propertyInfo.Value
-    | _ -> match input.GetType().GetProperty property with null -> null | propertyInfo -> propertyInfo.GetValue input
+    | :? PSObject as object -> match object.Properties[property] with Null -> null | NonNull propertyInfo -> propertyInfo.Value
+    | _ -> match input.GetType().GetProperty property with Null -> null | NonNull propertyInfo -> propertyInfo.GetValue input
 
   /// Ensures that the specified value is an array.
   /// The result is always an array of zero or more objects.
